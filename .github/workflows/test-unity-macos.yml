@@ -23,7 +23,7 @@ jobs:
           RELEASE_TAG: ${{ inputs.tag }}
         shell: python
         run: |
-          import hashlib, os, pathlib, plistlib, stat, subprocess, urllib.parse, urllib.request, zipfile
+          import hashlib, os, pathlib, plistlib, shutil, stat, subprocess, urllib.parse, urllib.request, zipfile
           tag = urllib.parse.quote(os.environ['RELEASE_TAG'], safe='')
           base = 'https://github.com/' + os.environ['GITHUB_REPOSITORY'] + '/releases/download/' + tag + '/'
           name = 'Meridian-Coast-macOS-Universal.zip'
@@ -46,8 +46,12 @@ jobs:
           exe = app / 'Contents/MacOS' / info['CFBundleExecutable']
           subprocess.run(['file', str(exe)], check=True)
           result = subprocess.run([str(exe), '-batchmode', '-nographics', '-meridianQA', '-meridianHeadlessQA', '-logFile', str(root / 'player.log')], cwd=root, timeout=300)
-          report = root / '.astra-run/runtime-qa.txt'
-          assert report.is_file(), 'No runtime QA report; inspect player.log'
+          reports = list(root.rglob('runtime-qa.txt'))
+          assert len(reports) == 1, 'Expected one runtime QA report; inspect player.log'
+          report = reports[0]
+          results = root / 'results'; results.mkdir(exist_ok=True)
+          shutil.copy2(report, results / 'runtime-qa.txt')
+          shutil.copy2(report.with_name('runtime-errors.txt'), results / 'runtime-errors.txt')
           text = report.read_text(); print(text)
           assert result.returncode == 0, 'Player returned nonzero exit status'
           assert 'FAIL |' not in text and 'PASS | No runtime exceptions | 0' in text
@@ -59,7 +63,7 @@ jobs:
         with:
           name: unity-qa-${{ matrix.runner }}
           path: |
-            qa/.astra-run/runtime-*.txt
+            qa/results/runtime-*.txt
             qa/player.log
           if-no-files-found: warn
           retention-days: 14
