@@ -1,0 +1,2758 @@
+# GPT-6 Astra — Godot + Blender MCP Realistic GTA-Style Open-World Benchmark
+
+## Mission
+
+You are the sole lead developer and technical artist of the **existing Godot project in the currently opened Codex Desktop folder**.
+
+Your task is to build the most complete, polished, realistic **GTA-style single-player open-world sandbox** you can achieve during this autonomous development session.
+
+This is **not** a mission/story game. There must be **no campaign, no quests, no mission markers, no scripted story missions, and no progression gated behind missions**.
+
+The game should launch directly into **free roam** and focus on emergent sandbox gameplay:
+- exploring a large open world on foot;
+- stealing/entering/driving vehicles;
+- cars, motorcycles, boats, helicopters and airplanes;
+- using many weapon types;
+- fighting NPCs and police;
+- committing crimes that escalate a wanted/pursuit system;
+- interacting with shops and useful world locations;
+- swimming;
+- vehicle damage and explosions;
+- traffic and pedestrians;
+- day/night and weather;
+- unrestricted sandbox experimentation.
+
+The experience should reproduce as many of the **general open-world sandbox capabilities associated with games such as GTA V** as practical, while being an **original game**.
+
+Quality references such as **GTA V and Red Dead Redemption 2 are visual/interaction quality bars only**. Do not copy their maps, code, missions, characters, names, logos, textures, audio, UI artwork, story content, proprietary assets, or ripped game files.
+
+The final game must be an original project.
+
+## Godot implementation target
+
+Use the existing **Godot 4.x** project and the exact installed stable Godot version detected on this machine.
+
+Technical defaults:
+
+- **GDScript** as the primary gameplay/tooling language.
+- **Forward+** renderer is strongly preferred for this realism target.
+- `CharacterBody3D` for the player and suitable character controllers.
+- `RigidBody3D` / custom physics for vehicles and physical props where appropriate.
+- `NavigationRegion3D`, `NavigationMesh`, `NavigationAgent3D`, and `NavigationServer3D` for navigation/AI where useful.
+- `.tscn` / `PackedScene` for reusable scenes.
+- custom `Resource` / `.tres` data assets and data-driven registries where useful.
+- `@tool`, EditorPlugin, EditorScript-style workflows and headless scripts for reproducible editor automation.
+- `Control`/`Container`/Theme systems for UI.
+- `AnimationPlayer`, `AnimationTree`, Skeleton3D and procedural animation/IK where appropriate.
+- `MultiMeshInstance3D`, visibility ranges, occlusion, streaming and pooling for large-world performance.
+
+Do not require C#/.NET unless the existing project is already intentionally configured around it and using it is clearly more reliable. Prefer GDScript for this benchmark.
+
+---
+
+# 0. Existing project and mandatory Blender connection
+
+Work directly in the current Godot project containing `project.godot`. **Do not create another nested Godot project.**
+
+A Blender file for this Godot project already exists:
+
+```text
+GodotGTA.blend
+```
+
+The dedicated Blender MCP server for this project is:
+
+```text
+blender_godot
+```
+
+It connects to the Blender instance on:
+
+```text
+localhost:9877
+```
+
+## Critical Blender routing rule
+
+For this project:
+
+- use **only** the MCP server `blender_godot`;
+- use the Blender instance on port **9877**;
+- use `GodotGTA.blend` as the canonical Blender working file for this project;
+- do **not** use `blender_godot`;
+- do **not** use `blender_unreal`;
+- do not modify Blender files belonging to the other engine projects.
+
+Before making major Blender changes, verify that the connected Blender scene is the intended Godot GTA asset scene.
+
+Keep `GodotGTA.blend` saved regularly.
+
+You may create automatic backups or split-out source `.blend` files if genuinely necessary for stability, but `GodotGTA.blend` remains the master Blender scene for the Godot benchmark.
+
+---
+
+# 1. Blender MCP is mandatory
+
+Blender MCP is a **required active part of the 3D asset-production pipeline**, not an optional extra.
+
+Use `blender_godot` actively to:
+
+- inspect the Blender scene;
+- create meshes;
+- edit geometry;
+- create UVs;
+- create materials;
+- build rigs where useful;
+- create basic animations where practical;
+- position pivots/origins correctly;
+- prepare LOD-friendly geometry;
+- create collision helper meshes when useful;
+- create render/viewport previews;
+- inspect visible results;
+- revise poor-looking assets;
+- save source Blender work;
+- export engine-ready assets;
+- integrate them into Godot.
+
+Do not merely write Blender Python scripts and leave them unused if the MCP can perform and verify the operation directly.
+
+Do not ask me to manually model, UV, rig, export, import, or wire important assets.
+
+## Blender visual QA loop
+
+For every important hero asset:
+
+1. inspect the current Blender scene;
+2. model or modify the asset through `blender_godot`;
+3. create appropriate materials/UVs;
+4. inspect it visually using Blender viewport/render feedback when available;
+5. revise it if it looks visibly poor, broken, toy-like, or placeholder-quality;
+6. save the Blender source;
+7. export it in an engine-friendly format, preferably FBX for rigged/animated assets and FBX/GLB where appropriate for static assets;
+8. import it into Godot;
+9. configure materials, colliders, physics and gameplay components;
+10. test it in the actual game.
+
+A Blender asset is **not finished merely because a file exists**. It must work and look reasonable inside Godot.
+
+---
+
+# 2. No external asset shortcuts
+
+This benchmark is about **GPT-6 Astra + Godot + Blender MCP**.
+
+Do not depend on:
+- Godot Asset Library packs;
+- ripped GTA assets;
+- Sketchfab;
+- Poly Haven downloaded asset packs;
+- Poly Pizza;
+- Meshy;
+- Rodin;
+- Hunyuan 3D;
+- external 3D generation services;
+- copyrighted commercial asset packs;
+- downloaded character/vehicle/weapon models.
+
+Create the important project-specific 3D assets yourself with Blender MCP and project-owned code.
+
+Built-in Godot functionality, engine modules, and project-owned scripts/resources are allowed.
+
+Procedurally generated project-owned textures, materials, meshes and audio are allowed.
+
+---
+
+# 3. Autonomy and workflow
+
+I am a Godot beginner.
+
+Do **not** expect me to manually:
+- create scenes/nodes manually;
+- assemble `.tscn` scenes/PackedScenes manually;
+- assign Inspector references manually;
+- set up render settings;
+- build UI;
+- create materials;
+- rig vehicles;
+- configure weapons;
+- set up NavigationRegion3D/NavigationMesh manually;
+- create traffic routes;
+- set up Blender exports;
+- repair compile errors.
+
+Take ownership of the implementation.
+
+Before substantial work:
+
+1. inspect the entire Godot project and `project.godot`;
+2. detect the exact installed Godot version and renderer;
+3. identify the current render pipeline;
+4. identify installed packages;
+5. inspect the existing `GodotGTA.blend`;
+6. confirm access to `blender_godot`;
+7. create a concise technical plan;
+8. create/update `.gitignore`;
+9. initialize Git and create a baseline commit if Git is available and the project is not already under version control;
+10. create:
+   - `DEVELOPMENT.md`
+   - `FEATURE_MATRIX.md`
+   - `ASTRA_FINAL_REPORT.md`
+11. record a local session start timestamp.
+
+Then work autonomously.
+
+Do not stop and ask for confirmation after each subsystem.
+
+If one feature becomes a deep blocker:
+- preserve the working game;
+- document the limitation;
+- move to another high-value feature;
+- return later if possible.
+
+Do not claim an unfinished feature is working.
+
+---
+
+# 4. Overall design target
+
+Create an original modern urban/crime open-world sandbox with:
+
+- realistic visual direction;
+- third-person character control;
+- optional first-person mode if practical;
+- large seamless-feeling map;
+- realistic urban and natural environments;
+- dense traffic and pedestrians;
+- drivable land, air and water vehicles;
+- combat;
+- police response;
+- wanted levels;
+- shops;
+- garages;
+- weapon inventory;
+- vehicle ownership/spawning for testing;
+- day/night;
+- weather;
+- dynamic world reactions;
+- explosions;
+- physics;
+- free-roam sandbox tools.
+
+There must be **no mission system**.
+
+The default experience is:
+
+```text
+Launch game
+→ load/open world
+→ control player immediately
+→ freely explore and cause/interact with sandbox systems
+```
+
+---
+
+# 5. Realistic visual target — extremely important
+
+The target is **realistic modern 3D**, not:
+- Minecraft;
+- Roblox;
+- voxel art;
+- PS1/PS2 low-poly nostalgia;
+- cartoon;
+- toy-like proportions;
+- flat-shaded primitives;
+- generic capsules/cubes as final assets.
+
+Aim for a visual impression inspired by modern realistic AAA open-world games.
+
+This does **not** mean you must reach true GTA V/RDR2 production quality with one autonomous agent. It means every visual decision should move in that direction.
+
+Prioritize:
+- believable human proportions;
+- realistic vehicle proportions;
+- PBR materials;
+- physically plausible roughness/metallic values;
+- high-quality lighting;
+- proper shadows;
+- believable road surfaces;
+- glass;
+- metal;
+- concrete;
+- asphalt;
+- vegetation;
+- atmospheric fog;
+- reflections where supported;
+- detailed hero assets;
+- consistent art direction;
+- realistic color grading;
+- strong weather/time-of-day presentation.
+
+Avoid visually obvious prototype content in the final pass.
+
+---
+
+# 6. Renderer and visual pipeline
+
+Inspect the existing Godot project first.
+
+For this realism target, **Forward+ is preferred** because it exposes the strongest desktop 3D feature set.
+
+If the project already uses Forward+, keep it.
+
+If it uses Mobile or Compatibility:
+- evaluate switching to Forward+ early while the project is still clean;
+- switch only if it can be done reliably;
+- otherwise keep the existing renderer and document the visual limitation.
+
+Do not destabilize a working project merely to force a renderer change.
+
+Use Godot 4 rendering features pragmatically:
+
+- `WorldEnvironment` / `Environment`;
+- physically plausible sun and local-light intensities;
+- `DirectionalLight3D`;
+- volumetric fog when available and performant;
+- SSAO / SSIL where supported and beneficial;
+- SDFGI, VoxelGI, LightmapGI, or another suitable GI approach based on actual scene needs;
+- ReflectionProbe where appropriate;
+- Decal nodes for road wear, dirt, bullet impacts and environmental detail;
+- high-quality shadows balanced for performance;
+- color grading / tonemapping;
+- emissive materials and nighttime lighting;
+- sky/atmospheric presentation;
+- water shaders;
+- wet-surface material variants during rain.
+
+Create reusable master-like ShaderMaterial/StandardMaterial3D setups and resource variants instead of duplicating expensive materials everywhere.
+
+
+---
+
+# 7. Large open world
+
+The map must feel **large, varied and worth exploring**.
+
+Do not create a tiny square city block and call it an open world.
+
+Create multiple distinct regions.
+
+High-priority world regions:
+
+1. **Dense downtown**
+   - tall buildings;
+   - offices;
+   - shops;
+   - intersections;
+   - alleys;
+   - parking areas;
+   - traffic lights.
+
+2. **Residential / suburban**
+   - houses;
+   - apartments;
+   - yards;
+   - smaller roads;
+   - convenience stores;
+   - parks.
+
+3. **Industrial district**
+   - warehouses;
+   - factories;
+   - rail/utility areas;
+   - storage yards;
+   - shipping containers.
+
+4. **Port / docks**
+   - water;
+   - cranes/industrial props;
+   - warehouses;
+   - boats;
+   - piers.
+
+5. **Beach / coastline**
+   - beach;
+   - promenade;
+   - coastal roads;
+   - vegetation.
+
+6. **Airport**
+   - runways;
+   - hangars;
+   - service roads;
+   - planes/helicopters;
+   - open takeoff/landing space.
+
+7. **Countryside**
+   - fields;
+   - rural roads;
+   - farms;
+   - sparse buildings.
+
+8. **Mountain / hill region**
+   - winding roads;
+   - trails;
+   - viewpoints;
+   - forests.
+
+9. **Highway network**
+   - multi-lane roads;
+   - ramps;
+   - bridges;
+   - tunnels where practical.
+
+Add additional variety if possible:
+- river;
+- lake/reservoir;
+- desert/dry region;
+- forest;
+- luxury neighborhood;
+- commercial strip;
+- police station;
+- hospital;
+- gas stations;
+- parking garages.
+
+The world must be original and not recreate Los Santos or any real GTA map.
+
+---
+
+# 8. World streaming and performance
+
+A large world requires deliberate technical architecture.
+
+Use a scalable approach such as:
+- streamed world sectors built as `PackedScene`/`.tscn` chunks;
+- asynchronous/threaded `ResourceLoader` use where safe;
+- controlled add/remove of sector scenes around the player;
+- distance-based activation;
+- visibility-range/manual LOD systems and HLOD-like grouping where practical;
+- `OccluderInstance3D` / occlusion culling where useful;
+- `MultiMeshInstance3D` for repeated static/decorative geometry where appropriate;
+- pooled traffic/pedestrians;
+- spawn/despawn rings around the player;
+- impostors/billboards only where visually acceptable;
+- asynchronous loading where practical.
+
+Do not keep the entire high-detail city fully active if unnecessary.
+
+Consider floating-origin or precision mitigation only if map scale genuinely requires it.
+
+The game should remain usable while screen recording.
+
+---
+
+# 9. Environment asset pipeline
+
+Use Blender MCP to create **modular realistic environment kits** rather than individually hand-modeling every building from scratch.
+
+Create reusable Blender collections/assets for:
+
+### Buildings
+- modern office façade modules;
+- apartment modules;
+- suburban house kit;
+- storefront modules;
+- industrial warehouse kit;
+- airport/hangar kit;
+- garage/parking structures.
+
+### Street assets
+- traffic lights;
+- street lamps;
+- traffic signs;
+- barriers;
+- benches;
+- bins;
+- fire hydrants;
+- bus stops;
+- fences;
+- utility boxes;
+- bollards;
+- road cones.
+
+### Roads
+Use Godot tooling/code (for example `@tool` scripts, `Path3D`/`Curve3D`, and generated meshes) for road layout where more efficient, but create necessary visual assets through Blender:
+- curbs;
+- barriers;
+- signs;
+- lamp posts;
+- road furniture.
+
+Use project-generated materials/decals for:
+- asphalt;
+- lane markings;
+- dirt;
+- oil;
+- cracks;
+- crosswalks;
+- sidewalks.
+
+### Nature
+Create/use project-owned:
+- trees;
+- bushes;
+- rocks;
+- grass;
+- roadside vegetation.
+
+Prioritize realistic silhouettes and sensible LODs.
+
+---
+
+# 10. Player character
+
+Default gameplay should be **third-person**, similar to modern open-world action games.
+
+For Godot, prefer a robust `CharacterBody3D`-based player controller with a separate camera rig/pivot. Use `SpringArm3D` or an equivalent custom collision-aware camera solution where it produces stable results.
+
+Implement:
+- walk;
+- run;
+- sprint;
+- jump;
+- crouch if practical;
+- aim;
+- shooting;
+- melee;
+- weapon switching;
+- entering/exiting vehicles;
+- swimming;
+- falling;
+- ragdoll/death;
+- camera orbit;
+- camera collision;
+- shoulder aiming;
+- smooth movement transitions.
+
+Optional/high priority:
+- first-person mode toggle.
+
+## Character model
+
+Use Blender MCP to create an original realistic/stylized-realistic human character.
+
+Do not leave the final player as:
+- Capsule;
+- mannequin;
+- primitive;
+- low-poly Roblox-like body.
+
+Create:
+- head;
+- torso;
+- arms;
+- hands;
+- legs;
+- shoes;
+- clothing;
+- basic facial features;
+- realistic human proportions.
+
+Rig it for gameplay.
+
+Use Godot `Skeleton3D`, AnimationPlayer/AnimationTree, and Godot 4 humanoid retargeting/BoneMap conventions where practical.
+
+If fully bespoke realistic animation is too expensive, prefer:
+- procedural animation;
+- IK;
+- code-driven locomotion;
+- reusable animation layers;
+over visibly broken custom animation.
+
+---
+
+
+# 10A. Cover, stealth, traversal and close-combat depth
+
+GTA V's on-foot sandbox is not only running and shooting. Build a more complete action-game movement/combat layer.
+
+## Cover system — high priority
+
+Implement a contextual cover system that works with common world geometry:
+
+- enter/exit cover near suitable walls, barriers, vehicles and low objects;
+- standing and low-cover poses;
+- move left/right while attached to cover;
+- peek around corners and over low cover;
+- aim out from cover;
+- fire from cover;
+- blind fire with reduced accuracy;
+- move around compatible cover corners;
+- smoothly leave cover when movement demands it;
+- avoid camera clipping while in cover.
+
+Police and hostile AI should also use cover where practical.
+
+## Stealth mode
+
+Implement a GTA-like stealth state:
+
+- slower/quieter movement;
+- reduced footstep/noise radius;
+- lower detection likelihood when out of sight;
+- stealth takedown from behind;
+- suppressed weapons interact with detection/noise;
+- NPC suspicion/detection should depend on line of sight, distance, noise and obvious hostile behavior.
+
+Stealth should remain a sandbox option and must not create stealth missions.
+
+## Traversal
+
+Improve basic traversal with:
+
+- jump;
+- climb/vault over low obstacles;
+- contextual mantle where practical;
+- ladder climbing;
+- dodge/roll while aiming if practical;
+- fall/landing reactions;
+- ragdoll when impact thresholds are exceeded.
+
+Do not turn traversal into parkour. Keep it grounded and GTA-like.
+
+## Melee
+
+Expand melee beyond a single attack:
+
+- light/standard strike;
+- heavier strike or contextual finisher;
+- block/dodge where practical;
+- melee weapon support;
+- knockdown;
+- different reactions based on attack direction/strength.
+
+---
+
+# 11. NPC population
+
+Create a living population system.
+
+NPC types should include:
+- ordinary pedestrians;
+- drivers;
+- police officers;
+- armed police/tactical units;
+- shop staff;
+- optional criminals/gang-like hostile NPCs.
+
+NPCs should:
+- walk around;
+- use sidewalks;
+- cross roads where practical;
+- react to traffic;
+- react to collisions;
+- panic when gunfire/explosions occur;
+- flee from danger;
+- call/react to police events where practical;
+- drive vehicles;
+- fight or defend themselves depending on type;
+- ragdoll or react physically to impacts;
+- despawn/respawn intelligently for performance.
+
+Create multiple visual variants through Blender:
+- male/female body variations;
+- clothing variations;
+- skin/hair variations;
+- police uniforms;
+- tactical variants.
+
+Do not make every NPC visually identical.
+
+---
+
+# 12. Traffic system
+
+The city should contain believable civilian traffic.
+
+For pedestrians, use Godot navigation (`NavigationRegion3D`, `NavigationAgent3D`, NavigationServer3D) where useful. Vehicle traffic should primarily follow a project-owned lane/road graph rather than forcing car AI onto pedestrian navigation meshes.
+
+Implement:
+- road graph / lanes;
+- intersections;
+- traffic signals;
+- traffic direction;
+- vehicle following;
+- stopping;
+- basic collision avoidance;
+- lane changes where practical;
+- traffic density scaling;
+- vehicle spawn/despawn around player;
+- parked vehicles;
+- honking/reaction hooks;
+- accidents and stopped traffic handling where practical.
+
+Traffic AI does not need perfect real-world autonomy, but should look believable during normal driving.
+
+---
+
+# 13. Vehicle system
+
+Vehicles are a major headline feature.
+
+Implement a reusable vehicle framework with:
+- enter/exit;
+- driver seat;
+- camera;
+- steering;
+- throttle;
+- brakes;
+- reverse;
+- handbrake;
+- suspension;
+- tire grip;
+- speed;
+- engine state;
+- damage;
+- collision;
+- headlights;
+- brake lights;
+- engine audio hooks;
+- horn;
+- vehicle health;
+- explosions/fire when heavily damaged if practical.
+
+Use a reliable Godot vehicle solution: preferably a project-owned `RigidBody3D`-based vehicle with raycast/custom suspension and wheel forces, or `VehicleBody3D`/`VehicleWheel3D` if testing shows they are suitable and stable for this project.
+
+## Vehicle classes
+
+Create multiple distinct Blender-authored vehicles.
+
+Minimum high-priority set:
+
+### Cars
+- compact car;
+- sedan;
+- sports car;
+- muscle car;
+- SUV;
+- pickup;
+- van;
+- police cruiser.
+
+### Two-wheel
+- motorcycle;
+- bicycle if practical.
+
+### Water
+- speedboat or motorboat.
+
+### Air
+- civilian helicopter;
+- police helicopter;
+- small propeller airplane;
+- jet or fast airplane as stretch.
+
+### Additional stretch
+- truck;
+- taxi;
+- ambulance;
+- fire truck;
+- armored/police tactical vehicle.
+
+Do not simply scale the same mesh to fake every vehicle category.
+
+Use distinct silhouettes and handling profiles.
+
+---
+
+
+# 13A. Carjacking, drive-by combat and vehicle interaction
+
+Vehicle gameplay must include the interactions that make a GTA-style sandbox feel complete.
+
+## Carjacking
+
+Support:
+
+- entering an empty vehicle normally;
+- pulling a civilian driver out of an occupied vehicle;
+- NPC driver reaction/panic/fight-back depending on personality;
+- theft of an occupied vehicle counting as a crime when witnessed;
+- police vehicle theft causing an immediate serious response;
+- motorcycles/bicycles using suitable contextual enter/steal animations.
+
+The system may use simplified procedural transitions if full authored animations are not feasible, but it should not feel like instant teleportation when a visible character is in the seat.
+
+## Drive-by shooting
+
+Allow context-appropriate weapons while driving/riding:
+
+- pistols;
+- compact SMG-type weapons;
+- throwable explosives where implemented;
+- suitable one-handed weapons.
+
+Implement:
+
+- free aim from vehicle;
+- camera support while aiming;
+- reduced accuracy compared with standing fire;
+- driver weapon restrictions;
+- motorcycle forward/side firing;
+- AI police/hostile drivers or passengers using vehicle weapons when appropriate.
+
+## Vehicle detail interactions
+
+Where practical support:
+
+- headlights;
+- high/low lights or simple toggle;
+- brake lights;
+- reverse lights;
+- horn;
+- siren for emergency vehicles;
+- convertible roof on compatible cars;
+- doors opening/closing;
+- trunk/hood interaction as stretch;
+- seat-specific entry points.
+
+---
+
+# 14. Vehicle Blender requirements
+
+Major vehicles must be authored through `blender_godot`.
+
+For each important vehicle, create:
+- body shell;
+- wheels;
+- glass;
+- lights;
+- interior approximation;
+- steering wheel where visible;
+- separate wheel objects;
+- correctly placed pivots/origins;
+- realistic scale;
+- material slots;
+- collision-friendly structure.
+
+Material families:
+- painted metal;
+- glass;
+- rubber;
+- chrome/metal;
+- plastic;
+- interior fabric/leather;
+- emissive headlights/taillights.
+
+For important hero cars, improve visible quality beyond a simple box with wheels.
+
+Create LOD-friendly geometry where practical.
+
+---
+
+
+# 14A. Vehicle customization and repair shop — high priority
+
+Create an original in-world vehicle modification/repair garage inspired by the general functionality of GTA V's car customization system.
+
+It must not copy Los Santos Customs branding, UI, logos or shop design.
+
+The player should be able to drive a compatible vehicle into the shop and:
+
+## Repair
+- restore vehicle health;
+- repair broken glass/lights where represented;
+- restore handling damage.
+
+## Cosmetic customization
+Support as many as practical:
+
+- primary paint;
+- secondary paint;
+- gloss/matte/metallic-style finishes;
+- wheels/rims;
+- wheel color;
+- window tint;
+- bumpers;
+- hood;
+- roof options;
+- grille;
+- exhaust;
+- skirts;
+- spoiler;
+- lights;
+- horn;
+- license plate style;
+- optional livery/stripe variants.
+
+## Performance customization
+Make upgrades genuinely affect handling/performance:
+
+- engine tuning;
+- brakes;
+- suspension;
+- transmission;
+- turbo/forced-induction-like upgrade;
+- armor;
+- tire durability / bullet-resistant tire option;
+- spoiler/downforce tuning where appropriate.
+
+Use data-driven upgrade definitions.
+
+Visual body modifications should use Blender-authored modular parts or carefully designed mesh variants rather than simply changing scale.
+
+The benchmark/debug menu may unlock everything immediately, but normal free-roam purchases should cost in-game money.
+
+---
+
+# 15. Aircraft and helicopter gameplay
+
+## Helicopters
+
+Implement:
+- takeoff/landing;
+- collective/lift;
+- yaw;
+- pitch/roll;
+- forward flight;
+- responsive arcade-realistic controls;
+- third-person chase camera;
+- damage/crash.
+
+## Airplanes
+
+Implement:
+- throttle;
+- takeoff;
+- pitch;
+- roll;
+- yaw;
+- stall/low-speed degradation at least approximately;
+- landing;
+- crash/damage.
+
+Controls can be accessible/arcade-like rather than flight-simulator complex.
+
+Airport runways must support meaningful flight gameplay.
+
+---
+
+# 16. Boats and swimming
+
+Implement:
+- swimmable water;
+- player buoyancy/swim controls;
+- drowning/health consequences if useful;
+- boats with buoyancy-like motion;
+- entering/exiting boats;
+- coastal/port gameplay.
+
+Water should visually fit the realism target.
+
+---
+
+# 17. Weapons and combat
+
+Create a substantial weapon system.
+
+High-priority weapon categories:
+
+### Melee
+- fists;
+- knife or melee weapon;
+- bat/crowbar-like weapon.
+
+### Handguns
+- pistol;
+- heavy pistol/revolver-like variant.
+
+### SMG
+- compact SMG.
+
+### Shotguns
+- pump shotgun;
+- optional semi-auto shotgun.
+
+### Rifles
+- assault rifle;
+- carbine;
+- marksman rifle.
+
+### Sniper
+- sniper rifle with scoped aiming.
+
+### Heavy/explosive
+- grenade;
+- rocket launcher;
+- optional grenade launcher.
+
+Do not copy GTA weapon models or brand names.
+
+Use original generic weapon designs.
+
+## Weapon behavior
+
+Implement:
+- weapon equip;
+- weapon wheel or fast selection;
+- ammo;
+- magazines;
+- reload;
+- recoil;
+- bullet spread;
+- fire rate;
+- hitscan/projectiles as appropriate;
+- muzzle flash;
+- shell/effect hooks;
+- hit reactions;
+- headshot/damage zones where practical;
+- explosions;
+- camera shake;
+- aim zoom;
+- scoped view for sniper.
+
+Use Blender MCP to create proper 3D weapon models.
+
+Do not use primitive cubes as final guns.
+
+---
+
+
+# 17A. Weapon customization and combat presentation
+
+Create a weapon modification layer for compatible firearms.
+
+At an original weapon shop/workbench, allow combinations such as:
+
+- extended magazines;
+- suppressor;
+- flashlight;
+- optic/scope;
+- grip/stability upgrade where appropriate;
+- cosmetic finish/tint;
+- optional higher-capacity magazine for selected weapons.
+
+Modifications must have actual gameplay effects when relevant:
+
+- suppressor reduces audible detection radius but may slightly affect weapon balance;
+- scope changes aiming/FOV;
+- grip reduces recoil/spread;
+- extended magazine increases capacity;
+- flashlight illuminates dark environments while aiming.
+
+## Ballistic interaction
+
+Add practical material response:
+
+- sparks on metal;
+- dust/chips on concrete;
+- glass breaking;
+- decals or impact marks where performant;
+- different impact audio hooks.
+
+Stretch:
+- limited penetration through thin materials;
+- tire puncture from bullets;
+- vehicle glass damage.
+
+---
+
+# 18. Police and wanted system — mandatory
+
+This is one of the most important systems.
+
+Implement a **0–5 level wanted/pursuit system**.
+
+The player begins at:
+
+```text
+0 stars
+```
+
+Crimes increase wanted pressure.
+
+Possible crime sources:
+- attacking civilians;
+- killing NPCs;
+- shooting in public;
+- attacking police;
+- stealing occupied vehicles;
+- major collisions;
+- explosions;
+- destroying police vehicles;
+- continued resistance/arrests avoided.
+
+Use witnesses/visibility where practical so not every crime instantly becomes globally known.
+
+## Wanted levels
+
+### 1 star
+- nearby patrol responds;
+- officers pursue/investigate.
+
+### 2 stars
+- more police cars;
+- more aggressive pursuit;
+- armed response.
+
+### 3 stars
+- larger vehicle response;
+- roadblocks;
+- police helicopter/search support if practical.
+
+### 4 stars
+- tactical/heavily armed units;
+- stronger roadblocks;
+- aggressive helicopter support.
+
+### 5 stars
+- maximum pursuit;
+- many units;
+- tactical vehicles/teams;
+- sustained air support;
+- difficult escape.
+
+The exact numbers can be tuned for playability.
+
+## Search / escape behavior
+
+The wanted system should not simply be a timer.
+
+Implement:
+- police line of sight;
+- last-known position;
+- search radius/area;
+- pursuing state;
+- searching state;
+- cooldown;
+- stars decay when player remains unseen long enough.
+
+Changing vehicle or hiding should help if police genuinely lose visual contact.
+
+HUD must clearly show wanted level.
+
+---
+
+
+# 18A. Wanted-system refinements from GTA-style free roam
+
+Strengthen the wanted system beyond simple star accumulation.
+
+## Witnesses
+
+Crimes should not always instantly become magically known.
+
+When practical:
+
+- civilians who directly witness a serious crime may panic and call police;
+- if the player stops/escapes before a report completes, response may be delayed or prevented;
+- gunshots/explosions can create an indirect report radius;
+- police who directly see the crime report it immediately.
+
+Do not make this system so complex that it destabilizes core police response.
+
+## Active pursuit vs search state
+
+Clearly separate:
+
+### Pursuit
+Police currently see/track the player.
+
+### Search
+Police have lost direct sight and search based on last known location.
+
+During Search:
+- wanted stars flash or otherwise visually communicate loss of direct contact;
+- minimap shows nearby police/search directions or cones when practical;
+- entering a police line of sight immediately resumes pursuit;
+- escape timer progresses only while genuinely unseen.
+
+Higher wanted levels should require a longer successful escape.
+
+## Police vehicle tactics
+
+Add GTA-like pursuit tactics where practical:
+
+- PIT maneuver attempts;
+- boxing-in at low speed;
+- ramming from suitable angles;
+- roadblocks at higher levels;
+- spike strips as stretch;
+- officers commandeering nearby civilian vehicles if stranded as stretch.
+
+## Appearance / vehicle changes
+
+During Search, changing obvious appearance or abandoning a clearly identified vehicle may slightly help the player evade detection.
+
+Do not make it an instant universal wanted-clear button.
+
+## Busted state
+
+Police do not always need to kill the player.
+
+If the player is:
+- unarmed/not actively resisting;
+- cornered at close range;
+- or otherwise in an arrestable state,
+
+allow a simplified **BUSTED/arrest** outcome.
+
+On arrest:
+- fade/respawn;
+- clear wanted level;
+- apply a modest money/ammo penalty if desired.
+
+This should coexist with the death/respawn system.
+
+---
+
+# 19. Police AI
+
+Police should:
+- investigate crimes;
+- pursue player;
+- use vehicles;
+- exit vehicles;
+- aim/shoot when escalation warrants it;
+- seek nearby positions/cover approximately;
+- call/spawn reinforcements;
+- create roadblocks at higher wanted levels;
+- use helicopter support where implemented;
+- attempt to surround/intercept rather than only drive directly into the player.
+
+Do not spawn police directly in the player's visible field of view if avoidable.
+
+---
+
+# 20. Combat AI
+
+Hostile NPCs should support:
+- target selection;
+- line of sight;
+- firing;
+- reloading;
+- movement;
+- basic cover use if practical;
+- flanking/position changes as stretch;
+- melee at close range where appropriate;
+- death/ragdoll;
+- surrender/fleeing behavior for civilians.
+
+The player's combat should remain responsive even with many AI actors nearby.
+
+---
+
+# 21. Physics and reactions
+
+Use physics to create convincing sandbox interactions.
+
+Implement where practical:
+- ragdolls;
+- vehicle impacts;
+- destructible light props;
+- movable street objects;
+- explosions applying force;
+- NPC knockdown;
+- vehicle-to-NPC impact reactions;
+- damaged vehicle handling;
+- broken street furniture;
+- fire/explosion chain reactions for vehicles.
+
+Do not attempt expensive full-building destruction if it compromises the project.
+
+---
+
+# 22. Vehicle damage
+
+Vehicles should visibly and mechanically react to damage.
+
+At minimum:
+- health/durability;
+- collision damage;
+- smoke at heavy damage;
+- fire before destruction if practical;
+- eventual explosion/destruction;
+- damaged handling.
+
+Stretch:
+- detachable doors/hood;
+- broken glass;
+- damaged lights;
+- wheel damage;
+- limited deformation.
+
+A simple but convincing damage model is better than unstable full soft-body simulation.
+
+---
+
+# 23. World interactions
+
+The player should be able to interact with the sandbox beyond shooting/driving.
+
+High-priority:
+- enter/exit vehicles;
+- steal occupied vehicles;
+- pick up weapons/ammo;
+- buy/get weapons;
+- use shops;
+- interact with doors/use points;
+- use garages/vehicle spawn points;
+- swim;
+- climb simple ladders if practical;
+- use elevators/automatic doors where useful.
+
+Optional:
+- basic clothing change;
+- vehicle repair;
+- body armor purchase;
+- food/health purchase.
+
+No missions or quests.
+
+---
+
+
+# 23A. Player customization, safehouses, phone and personal services
+
+Add free-roam identity/lifestyle systems that make the world feel closer to a complete GTA-style sandbox.
+
+## Clothing
+
+Create original clothing stores or wardrobe interaction with a modest but visible set of:
+
+- shirts/jackets;
+- pants;
+- shoes;
+- hats;
+- glasses/accessories.
+
+Use Blender-authored modular clothing or material variants where practical.
+
+Clothing is cosmetic and must not become a mission requirement.
+
+## Hair / appearance
+
+Add a barber/salon-like interaction as stretch:
+
+- hair variants;
+- facial-hair variants;
+- simple appearance options.
+
+A tattoo shop is a lower-priority stretch feature.
+
+## Safehouse
+
+Provide at least one usable safehouse/home with:
+
+- save/respawn role;
+- wardrobe access;
+- garage access;
+- optional sleep/time-skip;
+- basic interior.
+
+## Garages / stored vehicles
+
+Support storing a small set of player-selected vehicles persistently.
+
+A stored/personal vehicle should be retrievable after loading when practical.
+
+## Smartphone / interaction device
+
+Create an original in-game phone or interaction interface for free-roam utility.
+
+Useful functions may include:
+
+- contacts/services;
+- call/request taxi;
+- camera/photo mode;
+- quick save;
+- vehicle/garage service;
+- basic map/waypoint access.
+
+Do not recreate GTA's exact phone UI or brands.
+
+---
+
+# 24. Economy and shops
+
+Implement a lightweight free-roam economy.
+
+Player has:
+- cash balance;
+- weapon shop purchases;
+- ammo purchases;
+- armor/health purchases where appropriate;
+- vehicle repair or garage costs if implemented.
+
+Because there are no missions, provide multiple sandbox-compatible ways to obtain/test money:
+- initial reasonable cash;
+- NPC cash drops where appropriate;
+- pickups;
+- debug/cheat controls;
+- optional store robbery/emergent crime interaction as stretch.
+
+Do not make economy grind block testing.
+
+---
+
+# 25. Weapon shop
+
+Create at least one interactable weapon store.
+
+It should allow buying:
+- handguns;
+- SMGs;
+- shotguns;
+- rifles;
+- ammo;
+- armor if implemented.
+
+Use an original store identity and original UI.
+
+---
+
+# 26. Garage / vehicle access
+
+Provide a convenient way to access vehicles for free-roam testing.
+
+Possible implementations:
+- garages;
+- parking lots;
+- dealership;
+- debug/admin spawn menu.
+
+The player must not be forced to search the whole map just to demonstrate a helicopter or airplane.
+
+---
+
+# 27. Day/night cycle
+
+Implement:
+- time-of-day cycle;
+- sunrise;
+- daylight;
+- sunset;
+- night;
+- street lights;
+- vehicle headlights;
+- building/window lighting where practical;
+- nighttime traffic/pedestrian variation if practical.
+
+Visual quality at night matters.
+
+---
+
+# 28. Weather
+
+Implement several weather states:
+
+- clear;
+- cloudy;
+- rain;
+- fog;
+- storm if practical.
+
+Weather should affect presentation:
+- sky;
+- lighting;
+- wet-looking surfaces if possible;
+- visibility;
+- rain particles;
+- reflections where supported.
+
+Stretch:
+- reduced vehicle grip in rain.
+
+---
+
+# 29. Map navigation
+
+Implement a useful minimap/HUD navigation system.
+
+At minimum:
+- minimap or radar;
+- player heading;
+- roads or simplified map representation;
+- police/wanted feedback;
+- major world locations.
+
+Stretch:
+- full-screen map;
+- waypoint;
+- simple GPS route line.
+
+No mission markers.
+
+---
+
+
+# 29A. Public transport, parachuting, underwater exploration and wildlife
+
+These systems are high-value free-roam mechanics because they make the map feel like a world rather than a combat arena.
+
+## Taxi passenger service
+
+Allow the player to:
+
+- hail/call a taxi;
+- enter as a passenger;
+- choose a map destination;
+- ride there normally;
+- optionally skip/fast-forward the trip after a short transition.
+
+Taxi driving as a paid side activity is optional and should remain a free-roam activity, not a mission chain.
+
+## Trains / transit
+
+If technically practical, include:
+
+- moving trains and/or subway;
+- player can board/ride at least one transit type;
+- trains follow fixed routes;
+- collisions are handled safely.
+
+## Parachute
+
+Implement a usable parachute system:
+
+- equip automatically or from inventory when available;
+- deploy after jumping/falling;
+- steer;
+- descend;
+- flare/slow for landing;
+- landing damage for bad landings;
+- altimeter while parachuting if useful.
+
+Place parachutes at suitable high locations and/or aircraft so free-roam jumps are easy to test.
+
+## Underwater / diving
+
+Expand swimming with:
+
+- diving below surface;
+- breath/lung capacity;
+- underwater camera/fog/audio treatment;
+- deeper coastal areas;
+- underwater props/wreck-like exploration areas;
+- optional scuba gear that enables much longer underwater exploration.
+
+## Wildlife
+
+Populate suitable non-urban regions with a limited but convincing wildlife system.
+
+Examples:
+- deer;
+- coyotes;
+- boar;
+- rabbits;
+- birds;
+- farm animals;
+- dogs/cats;
+- fish;
+- sharks or another dangerous marine animal.
+
+Animals should use simple ecosystem-appropriate behavior:
+- grazing/wandering;
+- fleeing;
+- predators attacking only where appropriate;
+- aquatic movement;
+- region-based spawning.
+
+Keep counts performance-conscious.
+
+---
+
+# 30. HUD
+
+Create a polished GTA-like-but-original HUD.
+
+Implement UI with Godot `CanvasLayer`, `Control`, Container nodes, Themes and custom draw/shader resources where useful. Avoid fragile pixel-positioned UI when a responsive container layout is more appropriate.
+
+Display as appropriate:
+- health;
+- armor;
+- ammo;
+- selected weapon;
+- wanted stars;
+- money;
+- minimap;
+- vehicle speed;
+- vehicle health indicator if useful.
+
+Do not copy GTA V's exact HUD artwork.
+
+Create an original modern interface.
+
+---
+
+# 31. Weapon wheel
+
+Implement a weapon-selection interface inspired by the general radial-selection concept used in modern action games.
+
+It may:
+- slow time while open;
+- organize weapon classes;
+- show ammo;
+- allow quick mouse/controller selection.
+
+Do not copy exact GTA V artwork.
+
+---
+
+# 32. Camera
+
+Third-person camera should feel polished.
+
+Implement:
+- smooth follow;
+- orbit;
+- collision avoidance;
+- aim camera;
+- vehicle chase camera;
+- vehicle look-around;
+- helicopter/plane chase camera;
+- camera shake;
+- field-of-view tuning.
+
+Optional:
+- first-person toggle for player and vehicles.
+
+---
+
+# 33. Controls
+
+Create sensible default keyboard/mouse controls.
+
+Suggested defaults:
+
+```text
+WASD             Move / vehicle control
+Mouse            Camera / aim
+Left Shift       Sprint
+Space            Jump / handbrake in vehicle depending context
+Ctrl/C           Crouch if implemented
+F                Enter/exit vehicle
+Left Mouse       Fire / melee attack
+Right Mouse      Aim
+R                Reload
+1-9 / wheel      Weapon selection
+Tab              Weapon wheel
+E                Interact
+M                Map
+Esc              Pause
+V                Camera toggle
+H                Horn where context-appropriate
+```
+
+Use context-sensitive controls where practical.
+
+Add controller support only after keyboard/mouse is stable.
+
+---
+
+# 34. Audio
+
+Do not use copyrighted GTA/RDR audio or music.
+
+Use Godot `AudioStreamPlayer`, `AudioStreamPlayer3D`, audio buses/effects, and generated/project-owned audio resources.
+
+Create original/project-owned audio where practical:
+- footsteps;
+- gunshots;
+- reloads;
+- impacts;
+- explosions;
+- vehicle engines;
+- tires/skids;
+- horn;
+- sirens;
+- helicopter;
+- ambient city;
+- ocean;
+- rain;
+- UI.
+
+If realistic audio generation is not possible with available tools, create simple original procedural/synthesized audio rather than copying commercial assets.
+
+Audio quality is important, but do not block gameplay progress on perfect sound design.
+
+---
+
+# 35. Vehicle audio
+
+Vehicles should have convincing feedback:
+- engine pitch by RPM/speed;
+- acceleration;
+- braking/skid;
+- impact;
+- horn;
+- police sirens;
+- helicopter rotor;
+- airplane engine.
+
+Procedurally generated audio is acceptable.
+
+---
+
+
+# 35A. Emergency-world response and ambient services
+
+Make the sandbox react to incidents beyond only police.
+
+Where practical:
+
+- ambulances respond to serious NPC injuries/deaths;
+- fire trucks respond to major fires/explosions;
+- emergency vehicles use sirens and traffic attempts to yield;
+- responders despawn intelligently when far from the player;
+- tow/service vehicle behavior is a stretch feature.
+
+These systems are atmospheric. Do not let them overwhelm performance or interfere with the wanted system.
+
+## Radio / in-vehicle media
+
+Create an original radio/media system as a stretch feature.
+
+Requirements:
+- station/channel selection wheel or cycling;
+- vehicle audio source;
+- original/project-owned music or procedural audio only;
+- no copyrighted commercial tracks;
+- remember last selected station when practical.
+
+A simple set of distinct original ambient stations is enough for the benchmark.
+
+---
+
+# 36. World ambience
+
+Add environmental life:
+- distant city noise;
+- vehicle sounds;
+- ambient pedestrian chatter-like nonverbal noise where possible;
+- wind;
+- coastal ambience;
+- rain;
+- industrial ambience.
+
+Do not use copyrighted recordings.
+
+---
+
+# 37. Save/load
+
+Implement basic persistence using Godot-safe project-owned serialization (`FileAccess`, JSON/binary data, custom Resource serialization, or another robust local format).
+
+Save at least:
+- player position;
+- health/armor;
+- money;
+- owned/purchased weapons;
+- ammo;
+- current time;
+- basic settings;
+- optional last vehicle/garage state.
+
+The game should recover gracefully if some dynamic world objects are not persisted.
+
+---
+
+# 38. Admin / benchmark menu — mandatory
+
+Create a hidden or explicit benchmark/debug menu for rapid YouTube testing.
+
+It must allow:
+- teleport to key districts;
+- spawn any implemented vehicle;
+- spawn helicopter;
+- spawn airplane;
+- spawn boat;
+- give any implemented weapon;
+- refill ammo;
+- set money;
+- set health/armor;
+- set wanted level 0–5;
+- clear wanted level;
+- spawn police;
+- set time;
+- set weather;
+- repair current vehicle;
+- open/test vehicle customization;
+- unlock all vehicle modification options;
+- give parachute;
+- refill lung capacity / toggle scuba for testing;
+- max/reset character skills;
+- call taxi;
+- toggle wildlife;
+- toggle invulnerability;
+- toggle traffic;
+- toggle pedestrians;
+- show FPS;
+- show coordinates/sector.
+
+This is a testing tool, not a mission system.
+
+It should make it easy to demonstrate the whole project on video.
+
+---
+
+# 39. Blender project organization
+
+Inside `GodotGTA.blend`, organize major assets into clear collections such as:
+
+```text
+GTA_UNITY
+  Characters
+  NPCs
+  Vehicles
+    Cars
+    Motorcycles
+    Boats
+    Helicopters
+    Airplanes
+  Weapons
+  Buildings
+  StreetProps
+  Interiors
+  Nature
+  VFX_HelperMeshes
+  CollisionHelpers
+```
+
+Use consistent naming.
+
+Avoid thousands of unnamed objects such as:
+
+```text
+Cube.001
+Cube.002
+Cube.003
+```
+
+for final assets.
+
+---
+
+# 40. Godot asset organization
+
+Organize project content clearly, for example:
+
+```text
+res://
+  gta/
+    code/
+      core/
+      player/
+      vehicles/
+      traffic/
+      ai/
+      police/
+      weapons/
+      combat/
+      world/
+      streaming/
+      ui/
+      audio/
+      save/
+      debug/
+      editor/
+    generated/
+      models/
+      materials/
+      textures/
+      animations/
+      audio/
+      vfx/
+    scenes/
+      characters/
+      vehicles/
+      weapons/
+      world/
+      props/
+      bootstrap/
+      sectors/
+    resources/
+      data/
+      themes/
+      registries/
+```
+
+Use `.tscn`/PackedScene assets for reusable scene composition and `.tres`/custom Resource assets for data where appropriate.
+
+Avoid an unnecessarily huge scene tree. Large amounts of world data, traffic state, inventories, registries and sector metadata should live in compact data structures rather than thousands of permanent Nodes.
+
+Adapt this structure to the actual project as needed.
+
+
+---
+
+# 41. Blender export pipeline
+
+Create a reproducible Blender → Godot pipeline.
+
+Preferred flow:
+
+```text
+GodotGTA.blend
+→ Blender MCP edits
+→ save source
+→ export GLB/glTF
+→ res://gta/generated/models/...
+→ Godot import
+→ material/resource assignment
+→ `.tscn`/PackedScene generation/configuration
+→ gameplay integration
+```
+
+For Godot, **GLB/glTF 2.0 is the preferred interchange format** for most static and rigged assets because it integrates cleanly with Godot's 3D import pipeline.
+
+Use FBX only when the actual installed Godot version and the specific asset validate more reliably with FBX.
+
+For characters/animated assets:
+- preserve skeleton;
+- preserve animation clips when appropriate;
+- validate bone orientation and scale;
+- configure Godot animation retargeting when useful.
+
+Do not rely on manually exporting every asset through Blender's GUI.
+
+Use Blender MCP and Blender Python invoked through MCP when appropriate to automate:
+- export paths;
+- selected collections;
+- transforms;
+- triangulation only where necessary;
+- material slots;
+- animation export;
+- LOD variants.
+
+Do not depend on direct runtime use of the master `.blend` file. `GodotGTA.blend` is the editable source; explicit GLB/FBX exports are the runtime/import artifacts.
+
+
+---
+
+# 42. Materials and textures
+
+Create realistic materials without relying on external copyrighted texture packs.
+
+Use:
+- Blender procedural materials;
+- baked procedural textures;
+- project-generated textures;
+- Godot `StandardMaterial3D`, `ShaderMaterial`, shaders, and generated texture resources.
+
+Important material families:
+- asphalt;
+- concrete;
+- brick;
+- painted plaster;
+- glass;
+- metal;
+- chrome;
+- car paint;
+- rubber;
+- leather;
+- cloth;
+- skin;
+- hair;
+- wood;
+- vegetation;
+- dirt;
+- sand;
+- rock;
+- water.
+
+Create:
+- base color;
+- roughness;
+- metallic;
+- normal/bump;
+- AO where useful.
+
+Use texture atlases or trim sheets for modular buildings where efficient.
+
+---
+
+# 43. LODs
+
+Create an appropriate LOD strategy for:
+- vehicles;
+- buildings;
+- trees;
+- street props;
+- NPCs.
+
+Use Godot visibility ranges/manual mesh LODs and generated lower-detail variants where appropriate.
+
+Use `MultiMeshInstance3D` for large quantities of repeated vegetation/props when it materially reduces node count and draw overhead.
+
+Do not render every high-detail mesh at full resolution across the entire city.
+
+
+---
+
+# 44. Lighting
+
+Lighting should strongly support realism.
+
+Prioritize:
+- believable sun direction/intensity;
+- soft outdoor ambience;
+- night lighting;
+- street lights;
+- emissive signs/windows;
+- headlights;
+- police lights;
+- interior shop lighting;
+- volumetric atmosphere where supported.
+
+Avoid flat default-editor lighting.
+
+---
+
+# 45. VFX
+
+Create useful effects for:
+- muzzle flashes;
+- bullet impacts;
+- sparks;
+- dust;
+- explosions;
+- fire;
+- smoke;
+- vehicle damage;
+- rain;
+- water splashes;
+- tire smoke;
+- skid effects;
+- helicopter dust;
+- police lights.
+
+Use Godot-native VFX systems such as:
+- `GPUParticles3D`;
+- `CPUParticles3D` where more appropriate;
+- ShaderMaterial effects;
+- Decal nodes;
+- lights and emissive materials.
+
+Keep common effects pooled/reusable and performance-conscious.
+
+
+---
+
+# 46. Interaction quality
+
+Add feedback so systems feel intentional:
+- enter vehicle animation/transition;
+- weapon equip;
+- reload;
+- recoil;
+- hit reactions;
+- vehicle impact feedback;
+- police sirens;
+- screen feedback for low health;
+- subtle camera effects;
+- pickup feedback;
+- UI sounds.
+
+Avoid excessive arcade UI if it harms realism.
+
+---
+
+
+# 46A. Character skill progression
+
+Add a lightweight use-based character-stat system inspired by GTA V's single-player attributes.
+
+High-value skills:
+
+- **Stamina** — improves sustained sprinting/cycling/swimming.
+- **Shooting** — modestly improves recoil control/reload handling.
+- **Strength** — improves melee performance and physical resilience.
+- **Stealth** — improves quiet movement/detection profile.
+- **Driving** — improves difficult vehicle control/recovery slightly.
+- **Flying** — reduces turbulence/handling penalties and improves aircraft control slightly.
+- **Lung Capacity** — increases underwater breath time.
+
+Skills should improve primarily by doing the relevant activity.
+
+Keep benefits noticeable but not so strong that low-skill gameplay feels broken.
+
+Expose current stats in a pause/status screen or debug menu.
+
+The system is free-roam progression and must not create mission prerequisites.
+
+---
+
+# 47. World activities — but NO missions
+
+Do not implement missions.
+
+Allowed free-roam activities/interactions include:
+- driving;
+- flying;
+- boating;
+- shooting;
+- police chases;
+- shops;
+- garage/vehicle spawning;
+- swimming;
+- exploration;
+- stunts;
+- emergent traffic accidents;
+- fighting;
+- changing time/weather through debug tools;
+- sandbox destruction.
+
+Do **not** add:
+- mission start markers;
+- quest objectives;
+- NPC quest givers;
+- story cutscenes;
+- campaign progression;
+- scripted heists;
+- mission rewards.
+
+---
+
+
+# 47A. Optional hobbies and free-roam activities
+
+GTA V contains many activities that are not part of the core story. Add a **small selection only after the primary sandbox is stable**.
+
+These are optional stretch goals and must not become quests/missions.
+
+Good candidates:
+
+- shooting range;
+- street race;
+- off-road race;
+- sea race;
+- time trial;
+- parachute/base-jump challenge;
+- triathlon;
+- golf putting/driving-range style activity;
+- tennis;
+- darts;
+- stunt jumps.
+
+Implementation rule:
+
+- activities begin only when the player deliberately interacts with an activity point;
+- no story dialogue/campaign progression;
+- simple score/time/reward is acceptable;
+- do not spend core-development time implementing all of them before police, traffic, vehicles and combat are stable.
+
+## Shooting range
+
+Highest priority among activities because it reuses the combat system.
+
+Support:
+- timed target sequences;
+- score;
+- accuracy;
+- optional small cash reward;
+- contributes to Shooting skill.
+
+## Stunt jumps
+
+Place optional stunt locations around the map.
+
+Track:
+- successful jump;
+- distance/airtime;
+- safe landing.
+
+This adds exploration value without requiring missions.
+
+---
+
+# 48. Difficulty and player survivability
+
+Implement:
+- health;
+- armor;
+- damage;
+- fall damage;
+- vehicle collision damage;
+- bullets;
+- explosions;
+- drowning if appropriate;
+- death/respawn.
+
+On death:
+- fade/death UI;
+- respawn at a sensible location/hospital-like respawn point;
+- reset wanted level;
+- preserve basic sandbox access.
+
+---
+
+# 49. Performance targets
+
+The project must remain playable.
+
+Avoid:
+- one Node/script with `_process()` or `_physics_process()` per tiny prop where unnecessary;
+- thousands of unpooled traffic/NPC objects;
+- expensive AI for distant entities;
+- rendering all interiors;
+- heavy per-frame reflection updates everywhere;
+- all vehicles/NPCs simulating across the full map;
+- unbounded rigidbodies.
+
+Use:
+- pooling;
+- distance-based simulation tiers;
+- LOD;
+- streaming;
+- simplified distant AI;
+- culled interiors;
+- sensible traffic/pedestrian caps.
+
+Prefer stable 30–60 FPS at reasonable recording settings over theoretical ultra graphics that are unusable.
+
+---
+
+# 50. AI simulation tiers
+
+Use simulation levels:
+
+### Near player
+Full:
+- animation;
+- physics;
+- driving;
+- combat;
+- reactions.
+
+### Medium distance
+Reduced:
+- simplified AI;
+- limited updates.
+
+### Far distance
+Represented minimally or despawned.
+
+This is especially important for:
+- pedestrians;
+- civilian traffic;
+- police units.
+
+---
+
+# 51. Priority order
+
+This project is extremely broad.
+
+Use this implementation priority:
+
+1. stable Godot project;
+2. player + camera;
+3. large streamed world foundation;
+4. one polished Blender-authored car + enter/drive/exit;
+5. traffic foundation;
+6. player weapon/combat foundation;
+7. NPC/pedestrian foundation;
+8. police + wanted system;
+9. broaden vehicle roster;
+10. large varied map;
+11. helicopters/airplanes/boats;
+12. broaden weapon roster;
+13. vehicle customization/repair;
+14. shops/economy/player customization;
+15. cover/stealth/drive-by polish;
+16. day/night/weather;
+17. better NPC reactions and witness behavior;
+18. parachute/diving/wildlife/public transport;
+19. vehicle damage/explosions;
+20. realism/material/lighting pass;
+21. character-stat progression;
+22. selected free-roam activities;
+23. additional world interaction;
+24. benchmark/debug menu;
+25. final QA and optimization.
+
+Do **not** stop at step 4.
+
+Continue adding working breadth for as long as the session allows.
+
+---
+
+# 52. Definition of a strong first milestone
+
+A strong first milestone requires:
+
+- player can walk in third person;
+- a substantial city area exists;
+- at least one realistic Blender-authored car exists;
+- player can enter/drive/exit it;
+- basic traffic exists;
+- at least one realistic Blender-authored firearm exists;
+- player can shoot;
+- pedestrians exist;
+- police can respond;
+- wanted stars work;
+- basic UI works.
+
+Once this is stable, continue expanding toward the full scope.
+
+---
+
+# 53. Do not fake breadth
+
+Do not populate menus with 30 vehicles if only one actually works.
+
+A feature may be marked:
+
+```text
+WORKING
+PARTIAL
+NOT IMPLEMENTED
+```
+
+Only mark `WORKING` if it has a functional in-game path.
+
+For decorative-only assets, label them clearly.
+
+---
+
+# 54. QA workflow
+
+Continuously:
+- parse/validate GDScript;
+- launch/load the project;
+- inspect Godot output/errors;
+- fix script/resource errors;
+- test gameplay;
+- inspect logs;
+- verify imported Blender assets;
+- verify scale/orientation;
+- verify collision shapes;
+- verify material assignment;
+- verify Skeleton3D/animations;
+- check missing resource paths and NodePaths.
+
+Find the installed Godot executable automatically if possible.
+
+Use command-line/headless validation when useful, adapting commands to the actual executable/version. Example pattern:
+
+```text
+godot --headless --editor --path . --quit
+```
+
+Use headless/editor scripting to catch:
+- parser errors;
+- invalid preload/load paths;
+- missing resources;
+- broken `.tscn` references;
+- shader compilation errors;
+- startup exceptions.
+
+Run the main scene normally or through automated startup validation where practical.
+
+Do not wait until the very end to discover that the project does not load.
+
+
+---
+
+# 55. Blender QA
+
+Before accepting major assets:
+- inspect silhouette;
+- inspect proportions;
+- inspect normals;
+- inspect materials;
+- check scale;
+- check origin;
+- check transforms;
+- remove accidental duplicate geometry;
+- check wheel pivots;
+- check weapon grip/origin;
+- check character rig orientation;
+- check object names.
+
+Then validate the exported result inside Godot.
+
+---
+
+# 56. Final Godot validation
+
+Before declaring completion:
+
+1. `project.godot` is healthy;
+2. the project opens without critical GDScript/resource/shader errors;
+3. the configured main scene loads;
+4. player can move;
+5. at least several districts are accessible;
+6. traffic works;
+7. pedestrians work;
+8. vehicles work;
+9. weapon combat works;
+10. police response works;
+11. 0–5 wanted system works;
+12. player can lose wanted level through real search/LOS behavior;
+13. cover and stealth work if marked WORKING;
+14. drive-by shooting works if marked WORKING;
+15. vehicle modification/repair works if marked WORKING;
+16. parachute/diving/taxi/wildlife systems behave correctly if marked WORKING;
+17. helicopter or airplane works if marked WORKING;
+18. shops work if marked WORKING;
+19. admin menu works;
+20. Blender-generated assets import/display correctly;
+21. no major missing resources/materials;
+22. save/load works at least at basic level;
+23. world-sector streaming does not produce obvious duplicate/leaked scenes;
+24. performance is acceptable for recording.
+
+
+---
+
+# 57. Required documentation
+
+Maintain:
+
+## `DEVELOPMENT.md`
+Include:
+- Godot version and renderer;
+- render pipeline;
+- project architecture;
+- controls;
+- systems;
+- scene layout;
+- Blender asset workflow;
+- build/run instructions;
+- known limitations.
+
+## `FEATURE_MATRIX.md`
+
+Create a table:
+
+```text
+Feature | Status | Notes
+```
+
+Include all major systems from this prompt.
+
+Use only:
+- `WORKING`
+- `PARTIAL`
+- `NOT IMPLEMENTED`
+
+Be honest.
+
+## `ASTRA_FINAL_REPORT.md`
+
+At completion include:
+- what was built;
+- what works;
+- what is partial;
+- known bugs;
+- controls;
+- build result;
+- major assets created in Blender;
+- vehicle roster;
+- weapon roster;
+- map regions;
+- wanted/police implementation;
+- performance notes.
+
+---
+
+# 58. Session timing, token accounting and API-equivalent cost — mandatory
+
+These metrics will be shown in the YouTube comparison between the three engine versions, so collect them carefully and **do not fabricate precision**.
+
+## 58.1 Development time
+
+At the very beginning of the task, before substantial development work:
+
+1. Read the current local timestamp from the operating system.
+2. Save it to:
+   ```text
+   .astra-run/start_time.txt
+   ```
+3. Preserve that timestamp for the final report.
+
+At the end of the task:
+
+1. Read the current local timestamp again.
+2. Save it to:
+   ```text
+   .astra-run/end_time.txt
+   ```
+3. Calculate the full wall-clock elapsed time.
+
+The timer includes:
+- planning;
+- coding;
+- Blender MCP work;
+- model creation;
+- exports/imports;
+- Godot import, GDScript parsing, scene loading and runtime validation;
+- testing;
+- debugging;
+- asset generation;
+- waiting for builds/imports/commands during this autonomous session.
+
+Report:
+- start timestamp;
+- end timestamp;
+- elapsed time as `HH:MM:SS`;
+- elapsed minutes;
+- elapsed hours as a decimal if useful.
+
+Do not estimate development duration from memory if timestamps are available.
+
+## 58.2 Token usage
+
+At the end, make a best effort to obtain **real token usage for this Codex/Astra session**.
+
+Preferred sources, in order:
+
+1. session/runtime usage telemetry exposed directly by Codex;
+2. Codex session status/usage data;
+3. the current Codex session log/JSONL under the user's Codex data directory if accessible;
+4. another official local session-usage source.
+
+Identify the correct current session carefully using:
+- working directory;
+- timestamps;
+- session ID;
+- recent activity.
+
+Where available, report separately:
+
+- input tokens;
+- cached input tokens;
+- cache-write tokens;
+- output tokens;
+- reasoning tokens if reported separately;
+- total tokens.
+
+Important:
+- determine whether usage records are **per-turn** or **cumulative** before adding them;
+- do not double-count cumulative snapshots;
+- do not count the same cached/cache-write tokens twice;
+- do not invent token numbers merely to fill the report.
+
+If exact token usage is unavailable, write exactly:
+
+```text
+Exact token usage unavailable from accessible runtime.
+```
+
+You may provide a clearly labeled estimate only if there is a defensible data source and method.
+
+## 58.3 GPT-6 Astra API-equivalent price
+
+Calculate the approximate **token-only API-equivalent cost in USD** for the work performed in this session.
+
+This is **not** the user's actual ChatGPT/Codex subscription charge. It is a benchmark estimate answering:
+
+> "What would this token usage have cost at GPT-6 Astra API token rates?"
+
+If official current GPT-6 Astra API pricing is accessible from an authoritative OpenAI source at runtime, use the current official rates and record the source/rates used.
+
+If live official pricing cannot be retrieved, use these benchmark rates for GPT-6 Astra:
+
+```text
+Uncached input:    $10.00 per 1M tokens
+Cached input:       $1.00 per 1M tokens
+Cache writes:      $12.50 per 1M tokens
+Output:            $50.00 per 1M tokens
+```
+
+When the telemetry defines cached/cache-write tokens as subsets of total input, calculate non-cached input without double-counting:
+
+```text
+non_cached_input =
+    input_tokens
+  - cached_input_tokens
+  - cache_write_tokens
+```
+
+Then calculate:
+
+```text
+token_cost_usd =
+    (non_cached_input / 1,000,000 * 10.00)
+  + (cached_input_tokens / 1,000,000 * 1.00)
+  + (cache_write_tokens / 1,000,000 * 12.50)
+  + (output_tokens / 1,000,000 * 50.00)
+```
+
+If the runtime reports token categories with different semantics, adapt the formula to those semantics and explain the adjustment.
+
+### Long-context pricing
+
+If the official GPT-6 Astra pricing applicable at runtime uses a long-context multiplier and you have **per-request/per-turn usage**, apply it accurately to the requests that cross the relevant threshold.
+
+For the benchmark fallback pricing above, if a request has more than **272K input tokens**, use:
+
+- 2× input/cache rates for that full request;
+- 1.5× output rate for that full request.
+
+If you have only aggregate session totals and cannot determine which individual requests crossed the threshold:
+- report the standard-rate API-equivalent cost;
+- state clearly that an exact long-context adjustment could not be reconstructed from aggregate totals;
+- do not invent an adjusted value.
+
+### Tool fees
+
+If Blender MCP, local tools, Godot, or other local tool calls do not have a separately metered API fee, do not invent one.
+
+If an external paid tool/API somehow becomes involved despite the project rules, report its fee separately rather than hiding it inside token cost.
+
+Label the main number:
+
+```text
+GPT-6 Astra token-only API-equivalent cost
+```
+
+## 58.4 Required metrics in `ASTRA_FINAL_REPORT.md`
+
+At the bottom of `ASTRA_FINAL_REPORT.md`, include exactly this section:
+
+```text
+## Astra Session Metrics
+
+Start:
+End:
+Elapsed:
+Elapsed minutes:
+Elapsed hours:
+
+Model:
+Reasoning effort (if available):
+
+Input tokens:
+Cached input tokens:
+Cache-write tokens:
+Output tokens:
+Reasoning tokens (if separately available):
+Total tokens:
+
+GPT-6 Astra token-only API-equivalent cost:
+Pricing rates/source used:
+Long-context adjustment:
+External tool/API fees included: No/Yes
+Confidence / data source:
+
+Blender MCP server used: blender_godot
+Blender port: 9877
+Blender master file: GodotGTA.blend
+Approximate number of major Blender assets created:
+```
+
+The final response to me must also explicitly state:
+
+1. total development time;
+2. total token usage, if available;
+3. GPT-6 Astra token-only API-equivalent price in USD, if calculable;
+4. whether the figures are exact or estimated.
+
+These metrics are mandatory for the benchmark and should be calculated only after the final validation pass.
+
+---
+
+# 59. Git / recovery
+
+Use Git where practical.
+
+Create meaningful milestone commits, for example:
+- baseline;
+- player;
+- first drivable car;
+- combat;
+- police/wanted;
+- world expansion;
+- air vehicles;
+- final stabilization.
+
+Do not commit:
+- `.godot/`;
+- generated import/cache data;
+- logs;
+- export/build outputs;
+- large generated caches;
+- other standard Godot transient data.
+
+Do not allow an experimental change to destroy the only working state.
+
+---
+
+# 60. Final asset-quality gate
+
+Before final completion, visually inspect the game and explicitly reject obvious placeholder content.
+
+Important visible content should **not** remain:
+- raw Godot BoxMesh/CapsuleMesh/primitives;
+- capsules;
+- default mannequin-like placeholders;
+- untextured gray meshes;
+- magenta missing materials;
+- primitive cars;
+- cube guns;
+- low-poly toy buildings;
+- identical NPCs.
+
+Prioritize final replacement of:
+1. player character;
+2. main vehicles;
+3. police;
+4. common pedestrians;
+5. weapons;
+6. hero buildings/landmarks;
+7. street props.
+
+If some lower-priority distant assets remain simplified, document them honestly.
+
+---
+
+# 61. Final response
+
+Do not finish by only saying "done".
+
+Before responding:
+
+1. run final validation;
+2. fix critical parse/runtime errors;
+3. inspect `FEATURE_MATRIX.md`;
+4. update `ASTRA_FINAL_REPORT.md`;
+5. save `GodotGTA.blend`;
+6. ensure exported Blender assets exist in the Godot project and import cleanly;
+7. confirm the game launches into free roam;
+8. confirm there are **no missions**;
+9. confirm the admin/benchmark menu provides rapid access to implemented systems;
+10. make a final Git commit if the repository is healthy.
+
+Then provide a concise final summary with:
+
+- how to launch;
+- controls;
+- map regions;
+- vehicle list;
+- weapon list;
+- wanted/police features;
+- Blender assets created;
+- what remains incomplete;
+- elapsed development time;
+- token usage if available;
+- GPT-6 Astra token-only API-equivalent cost in USD if calculable;
+- whether the reported metrics are exact or estimated.
+
+---
+
+# 62. Start now
+
+Begin immediately.
+
+First:
+- inspect the existing Godot project;
+- verify `blender_godot`;
+- verify `GodotGTA.blend`;
+- record start time;
+- assess render pipeline;
+- create the implementation plan.
+
+Then build the game autonomously.
+
+Remember:
+
+**This is a missionless, realistic, large open-world GTA-style free-roam sandbox.**
+
+**Godot is the game engine.**
+
+**`blender_godot` on port 9877 and `GodotGTA.blend` are the mandatory Blender asset pipeline.**
+
+**Use Blender actively, not merely as an optional export tool.**

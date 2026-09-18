@@ -1,0 +1,151 @@
+extends SceneTree
+const H=preload("res://gta/code/helpers.gd")
+var game
+var results=[]
+func _initialize():call_deferred("run")
+func frames(n:int):
+	for i in range(n):await physics_frame
+func check(name:String,ok:bool,detail:String=""):
+	results.append({"name":name,"pass":ok,"detail":detail})
+	print("QA ",name," ", "PASS" if ok else "FAIL"," ",detail)
+func drive(v):
+	if is_instance_valid(game.player.vehicle):game.exit_vehicle()
+	game.player.global_position=v.global_position+Vector3(2.2,.2,0)
+	game.enter_exit()
+func run():
+	game=load("res://gta/scenes/main.tscn").instantiate()
+	root.add_child(game);current_scene=game
+	await frames(180)
+	check("initial_ground",game.player.is_on_floor(),str(game.player.position))
+	check("skeleton",game.player.skeleton!=null and game.player.skeleton.get_bone_count()>=10)
+	var start=game.player.position
+	Input.action_press("forward")
+	await frames(75)
+	Input.action_release("forward")
+	check("walking",game.player.position.distance_to(start)>4,str(game.player.position.distance_to(start)))
+	Input.action_press("jump");await frames(1);Input.action_release("jump")
+	await frames(15)
+	check("jump",game.player.position.y>.6,str(game.player.position.y))
+	await frames(90)
+	game.teleport("Downtown")
+	var car=game.spawn_vehicle("sedan",Vector3(5,.35, 70))
+	await frames(90)
+	drive(car)
+	check("car_enter",game.player.vehicle==car)
+	var cp=car.position
+	Input.action_press("forward")
+	await frames(180)
+	Input.action_release("forward")
+	check("car_accelerates",car.speed>5 and car.position.distance_to(cp)>8,"speed=%s distance=%s support=%s" % [car.speed,car.position.distance_to(cp),car.support_count])
+	Input.action_press("jump");await frames(120);Input.action_release("jump")
+	check("handbrake",abs(car.speed)<3,str(car.speed))
+	game.exit_vehicle()
+	check("car_exit",game.player.vehicle==null and game.player.collision_layer==2)
+	car.take_damage(65)
+	check("vehicle_damage",car.health<=35)
+	car.repair()
+	check("vehicle_repair",car.health==100)
+	car.repaint(Color(.7,.1,.05))
+	check("paint",car.paint.r>.6)
+	game.teleport("Harbor")
+	var boat=game.spawn_vehicle("boat",Vector3(1020,-.4,480))
+	await frames(90);drive(boat)
+	var bp=boat.position
+	Input.action_press("forward");await frames(180);Input.action_release("forward")
+	check("boat_movement",boat.position.distance_to(bp)>5,"distance=%s y=%s" % [boat.position.distance_to(bp),boat.position.y])
+	check("boat_buoyancy",boat.position.y> -2 and boat.position.y<2)
+	game.exit_vehicle()
+	game.player.position=Vector3(1000,-2,470)
+	await frames(60)
+	check("swimming",game.player.swimming)
+	Input.action_press("sprint");await frames(60);Input.action_release("sprint")
+	check("diving_breath",game.player.breath<100,str(game.player.breath))
+	game.teleport("Airport")
+	var heli=game.spawn_vehicle("helicopter",Vector3(-432,.4,970))
+	await frames(60);drive(heli)
+	Input.action_press("jump");await frames(180);Input.action_release("jump")
+	check("helicopter_lift",heli.position.y>5,str(heli.position))
+	game.exit_vehicle()
+	game.player.position=Vector3(-430,120,980)
+	await frames(3)
+	var pe=InputEventAction.new();pe.action="parachute";pe.pressed=true
+	game.player._unhandled_input(pe)
+	await frames(120)
+	check("parachute",game.player.parachuting and game.player.velocity.y> -7,str(game.player.velocity.y))
+	game.player.parachuting=false;game.player.parachute.visible=false
+	game.teleport("Airport")
+	var plane=game.spawn_vehicle("plane",Vector3(-532,.5,1250))
+	await frames(60);drive(plane)
+	Input.action_press("forward")
+	await frames(720)
+	Input.action_press("pitch_up")
+	await frames(90)
+	Input.action_release("pitch_up");Input.action_release("forward")
+	check("plane_takeoff",plane.position.y>4,"speed=%s y=%s" % [plane.speed,plane.position.y])
+	game.exit_vehicle()
+	game.teleport("Downtown")
+	await frames(60)
+	# Face an isolated target, validating camera ray damage and magazine consumption.
+	for a in game.actors:
+		if is_instance_valid(a):a.queue_free()
+	game.actors.clear()
+	for v in game.vehicles:
+		if is_instance_valid(v) and v.ai:v.queue_free()
+	game.traffic_enabled=false;game.pedestrians_enabled=false
+	game.player.position=Vector3(5,.1, 50)
+	var npc=game.spawn_actor(Vector3(5,.1,38),false)
+	npc.set_physics_process(false)
+	await frames(10)
+	game.player.camera.position=Vector3(5,1.5, 50)
+	game.player.camera.look_at(npc.global_position+Vector3.UP*1.1)
+	game.select_weapon(3);game.shoot_timer=0
+	var ammo=game.magazines["3"];var hp=npc.health
+	game.fire_weapon()
+	check("weapon_hit",npc.health<hp,"before=%s after=%s" % [hp,npc.health])
+	check("ammo_consumption",game.magazines["3"]==ammo-1)
+	game.magazines["3"]=0;game.reload_weapon()
+	await frames(150)
+	check("reload",game.magazines["3"]>0)
+	game.set_wanted(0)
+	for a in game.actors:
+		if is_instance_valid(a):a.queue_free()
+	game.actors.clear()
+	var cop=game.spawn_actor(Vector3(5,.1,35),true)
+	await frames(1)
+	cop.set_physics_process(false)
+	check("police_los",cop.sees_player())
+	var wall=H.box(game,Vector3(5,2,42),Vector3(8,4,1),H.material(Color.GRAY),true)
+	await frames(2)
+	check("police_occlusion",not cop.sees_player())
+	game.wanted=1;game.pressure=1;game.last_seen_time=game.sim_time-10;game.unseen=0;game.police_timer=999
+	await frames(900)
+	check("wanted_escape",game.wanted==0,"wanted=%s state=%s" % [game.wanted,game.pursuit])
+	wall.queue_free()
+	game.player.position=Vector3(25.2,.1,38)
+	game.player.yaw=-PI/2
+	var cover=InputEventAction.new();cover.action="cover";cover.pressed=true
+	game.player._unhandled_input(cover)
+	check("cover_attach",game.player.cover_normal!=Vector3.ZERO,str(game.player.cover_normal))
+	game.player._unhandled_input(cover)
+	check("cover_exit",game.player.cover_normal==Vector3.ZERO)
+	game.ui.open_menu("Garage")
+	check("pause_menu",paused and game.menu_open and game.ui.menu.visible)
+	game.ui.close_menu()
+	check("pause_resume",not paused and not game.menu_open)
+	for district in game.D.PLACES:
+		game.teleport(district)
+		await frames(40)
+		check("district_"+district,game.world.sectors.size()<=25 and game.player.position.y> -25,str(game.world.sectors.size()))
+	var initial=game.cash
+	game.cash=24680;game.save_game(false);game.cash=0;game.load_game()
+	check("persistent_save",game.cash==24680)
+	game.cash=initial
+	var f=FileAccess.open("res://.astra-run/qa-results.json",FileAccess.WRITE)
+	f.store_string(JSON.stringify(results,"\t"));f.close()
+	var failed=results.filter(func(r):return not r.pass)
+	print("QA_RESULT ",results.size()-failed.size(),"/",results.size()," PASS")
+	game.queue_free()
+	await process_frame
+	await process_frame
+	H.cache.clear()
+	quit(0 if failed.is_empty() else 2)

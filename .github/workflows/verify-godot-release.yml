@@ -1,0 +1,56 @@
+name: Verify Godot game downloads
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to verify
+        required: true
+        default: godot-v0.1.0
+permissions:
+  contents: read
+env:
+  RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag || 'godot-v0.1.0' }}
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - name: Download, check SHA256 and run Windows smoke test
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $base = "https://github.com/${{ github.repository }}/releases/download/$env:RELEASE_TAG"
+          $name = 'MeridianCoast-Windows-x64.zip'
+          Invoke-WebRequest "$base/$name" -OutFile $name
+          Invoke-WebRequest "$base/SHA256SUMS.txt" -OutFile SHA256SUMS.txt
+          $expected = ((Get-Content SHA256SUMS.txt | Where-Object { $_.EndsWith($name) }) -split '\s+')[0]
+          if ((Get-FileHash $name -Algorithm SHA256).Hash.ToLower() -ne $expected) { throw 'SHA256 mismatch' }
+          Expand-Archive $name -DestinationPath game
+          $exe = (Get-ChildItem game -Recurse -Filter 'Meridian Coast.exe').FullName
+          $proc = Start-Process -FilePath $exe -ArgumentList '--headless','--fixed-fps','60','--','--smoke-test' -Wait -PassThru -WindowStyle Hidden -RedirectStandardOutput smoke.log -RedirectStandardError smoke-errors.log
+          Get-Content smoke.log
+          Get-Content smoke-errors.log
+          if ($proc.ExitCode -ne 0 -or -not (Select-String -Path smoke.log -Pattern 'SMOKE_RESULT PASS' -Quiet)) { throw 'Game smoke test failed' }
+  macos:
+    runs-on: macos-14
+    timeout-minutes: 15
+    steps:
+      - name: Download, verify universal app and run macOS smoke test
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/${{ github.repository }}/releases/download/$RELEASE_TAG"
+          name="MeridianCoast-macOS-Universal.zip"
+          curl --fail --location --retry 3 "$base/$name" --output "$name"
+          curl --fail --location --retry 3 "$base/SHA256SUMS.txt" --output SHA256SUMS.txt
+          grep "  $name$" SHA256SUMS.txt | shasum -a 256 --check
+          ditto -x -k "$name" game
+          app="game/Meridian Coast.app"
+          executable=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$app/Contents/Info.plist")
+          lipo -archs "$app/Contents/MacOS/$executable"
+          codesign --verify --deep --strict "$app"
+          "$app/Contents/MacOS/$executable" --headless --fixed-fps 60 -- --smoke-test > smoke.log 2>&1
+          cat smoke.log
+          grep -q 'SMOKE_RESULT PASS' smoke.log
