@@ -1,0 +1,65 @@
+name: Test published Unity game on macOS
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag
+        required: true
+        default: unity-v1.0.0
+permissions:
+  contents: read
+jobs:
+  game:
+    name: macOS ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [macos-15, macos-15-intel]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 12
+    steps:
+      - name: Download, verify and run the released app
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+        shell: python
+        run: |
+          import hashlib, os, pathlib, plistlib, stat, subprocess, urllib.parse, urllib.request, zipfile
+          tag = urllib.parse.quote(os.environ['RELEASE_TAG'], safe='')
+          base = 'https://github.com/' + os.environ['GITHUB_REPOSITORY'] + '/releases/download/' + tag + '/'
+          name = 'Meridian-Coast-macOS-Universal.zip'
+          urllib.request.urlretrieve(base + name, name)
+          with urllib.request.urlopen(base + 'SHA256SUMS.txt') as response:
+              checksums = response.read().decode('ascii')
+          expected = next(line.split()[0] for line in checksums.splitlines() if line.endswith('  ' + name))
+          assert hashlib.sha256(pathlib.Path(name).read_bytes()).hexdigest() == expected
+          root = pathlib.Path('qa').resolve(); root.mkdir()
+          with zipfile.ZipFile(name) as archive:
+              for entry in archive.infolist():
+                  target = (root / entry.filename).resolve()
+                  assert target.is_relative_to(root)
+                  archive.extract(entry, root)
+                  mode = (entry.external_attr >> 16) & 0o777
+                  if mode and target.is_file(): target.chmod(mode)
+          app = next(root.glob('*/*.app'))
+          subprocess.run(['codesign', '--verify', '--deep', '--strict', str(app)], check=True)
+          info = plistlib.loads((app / 'Contents/Info.plist').read_bytes())
+          exe = app / 'Contents/MacOS' / info['CFBundleExecutable']
+          subprocess.run(['file', str(exe)], check=True)
+          result = subprocess.run([str(exe), '-batchmode', '-nographics', '-meridianQA', '-meridianHeadlessQA', '-logFile', str(root / 'player.log')], cwd=root, timeout=300)
+          report = root / '.astra-run/runtime-qa.txt'
+          assert report.is_file(), 'No runtime QA report; inspect player.log'
+          text = report.read_text(); print(text)
+          assert result.returncode == 0, 'Player returned nonzero exit status'
+          assert 'FAIL |' not in text and 'PASS | No runtime exceptions | 0' in text
+          assert 'WALL SECONDS' in text, 'Runtime QA did not finish'
+          print('PASS: native macOS execution and game systems; rendered graphics intentionally excluded from headless QA.')
+      - name: Keep validation reports
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: unity-qa-${{ matrix.runner }}
+          path: |
+            qa/.astra-run/runtime-*.txt
+            qa/player.log
+          if-no-files-found: warn
+          retention-days: 14

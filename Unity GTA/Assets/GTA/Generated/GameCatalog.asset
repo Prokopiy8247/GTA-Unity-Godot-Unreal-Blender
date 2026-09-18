@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3176578a356165428132a18f91fa5fc, type: 3}
+  m_Name: GameCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::Meridian.GameCatalog
+  names:
+  - Apartment
+  - Arrow_Motorcycle
+  - Aster_Sedan
+  - Atlas_SUV
+  - Barrier
+  - Baton
+  - Bench
+  - Bin
+  - Bison_Muscle
+  - Carbine
+  - Comet_Bicycle
+  - Container
+  - Courier_Van
+  - Deer
+  - Grenade
+  - Hangar
+  - HeavyPistol
+  - Heron_Helicopter
+  - House
+  - Hydrant
+  - Kestrel_Boat
+  - Knife
+  - Launcher
+  - Marksman
+  - Metro_Taxi
+  - Mica_Compact
+  - Oak
+  - OfficeMid
+  - Officer
+  - OfficeTower
+  - Palm
+  - Parachute
+  - Parking
+  - Pedestrian_F
+  - Pedestrian_M
+  - Pistol
+  - Player
+  - PortCrane
+  - Ranger_Pickup
+  - Rifle
+  - Rock
+  - Sentinel_Police
+  - Shotgun
+  - SMG
+  - Sniper
+  - Storefront
+  - Streetlamp
+  - Swift_Plane
+  - Tactical
+  - Target
+  - TrafficSignal
+  - Vela_Sport
+  - Warehouse
+  - Watch_PoliceHeli
+  models:
+  - {fileID: 300345643194155998, guid: f376d7effd2c5a24bb2da8c2338e05bd, type: 3}
+  - {fileID: 4082852371628613709, guid: 4006bb85e4746ba4d90d948c1fd29997, type: 3}
+  - {fileID: 4122947374011628621, guid: fdd32156532ceea438fbe43704aa7300, type: 3}
+  - {fileID: 4665101968370717617, guid: 3d74d7c833d9c20458236032e35747a7, type: 3}
+  - {fileID: 1132162554122505437, guid: 03be32bb951cf2345a4787f6f3f46f33, type: 3}
+  - {fileID: 4114728351780771210, guid: dde2e5ece16082244b3a23c6c321fb27, type: 3}
+  - {fileID: 6121012179098221695, guid: 38193ec3379805a409229565653d6879, type: 3}
+  - {fileID: 5352230621387494202, guid: 4048959599e596541b611eabf9fbc7fe, type: 3}
+  - {fileID: 459338615945843026, guid: 78b99b46fa1a2c14c87bafedc63359a6, type: 3}
+  - {fileID: 9062034264424351966, guid: bcda91ab7dd345e45885771f94bbfb82, type: 3}
+  - {fileID: 8395636796043436889, guid: 3fdd528d98067a34a9bb90cefa9874b3, type: 3}
+  - {fileID: 1419100918141945696, guid: 211c41e3119d3c546ba522c1e3c34403, type: 3}
+  - {fileID: 1491530903638763596, guid: 3c2207621b809294087a46f21b7b5260, type: 3}
+  - {fileID: 5375520636325042136, guid: 66551996c2c31094087f75c1a30e6e6d, type: 3}
+  - {fileID: 3588924844136237688, guid: 9b17c0fa25b48b440b406f8a42dbb41c, type: 3}
+  - {fileID: 7884067211901640583, guid: d6deeb52e869d874492147ace69f6dcf, type: 3}
+  - {fileID: 6719881577232529552, guid: cf0ab2ae28ca7874da8246259572d197, type: 3}
+  - {fileID: 303176663339952673, guid: 69855a6f4e245d547ac229a4f71c8d70, type: 3}
+  - {fileID: 3614543748222343655, guid: d3ae64a667177954fa6580b8aa5c9cf2, type: 3}
+  - {fileID: 6412855007531010714, guid: f2373a9c0315baf42af045943751d52c, type: 3}
+  - {fileID: 3032181425599439932, guid: 76135db4a3178cf4aad699ee622840a9, type: 3}
+  - {fileID: 7539069695192603498, guid: 9684e2956f0672c4087e9dff5cb1c7ba, type: 3}
+  - {fileID: 260394501874204800, guid: 5863a2ffb9165f64ebfda17a89c935e5, type: 3}
+  - {fileID: 4727859840123541228, guid: b22fae0b6fba75c4ab284c8febad3150, type: 3}
+  - {fileID: 2845456809801422899, guid: ab6680072aa4bad45afb7e4d813fd1ed, type: 3}
+  - {fileID: 5827330385113536659, guid: 6aff0bda11359464cbe1dd9be87b86f8, type: 3}
+  - {fileID: 1035573191424439062, guid: 17322c7f6b592bf4cb16c7a97cd89f3c, type: 3}
+  - {fileID: 60947357231829728, guid: 3a950770d827bb9499f3a493efbb8868, type: 3}
+  - {fileID: 153792512295446517, guid: 190799836914c6d48ac7f133cd72ff7e, type: 3}
+  - {fileID: 6918192055882360997, guid: 2dda9e48482265e43bd6094bd928c247, type: 3}
+  - {fileID: 8950049566918562254, guid: 9425b113c66de0240835722fbe3e1dcf, type: 3}
+  - {fileID: 3570023332898380018, guid: 0745f5ec060a69f4abc007f230718cd8, type: 3}
+  - {fileID: 4620125758694420064, guid: 0c9faed4618810a439d42ec8111d1555, type: 3}
+  - {fileID: 7645757699364417256, guid: 3a999335502c06a439ba1760cb2afa62, type: 3}
+  - {fileID: 8366216862682826625, guid: 9e0f8b464c3270347885c97f9b93c742, type: 3}
+  - {fileID: 3606599224762643226, guid: 740037995537cf049aa29e46c9ef5ae0, type: 3}
+  - {fileID: 4295497177395294010, guid: d95672e476354704788276b55e39e0a9, type: 3}
+  - {fileID: 4529826741679201724, guid: 7de2a4c9c20031b4485717d487bf237f, type: 3}
+  - {fileID: 8849782664441516346, guid: da0e68fc82ba6dd488152312f6808dfb, type: 3}
+  - {fileID: 3187736051765302697, guid: d8b85ac650e137744a76a1f4ceaea78d, type: 3}
+  - {fileID: 550612037197052970, guid: 94292cd2bbb915f48b983bd25035e226, type: 3}
+  - {fileID: 1407643977209274081, guid: e8824e8c7f1e38847a612ea96b22e839, type: 3}
+  - {fileID: 6841988421307420156, guid: e7f7df6329e214e4ca8a1e20b975afee, type: 3}
+  - {fileID: 4197403519595237048, guid: b0ccdada73f68c94ab325ddc64e8e53e, type: 3}
+  - {fileID: 8200270799414970248, guid: 6c101f13a6086ac48ab3d7685031c59d, type: 3}
+  - {fileID: 7871137435977708606, guid: 8539d7433af56a140b55a41845d7468b, type: 3}
+  - {fileID: 1745632344137857915, guid: 8b23deebed4661841b17146544706dd4, type: 3}
+  - {fileID: 7579707542990697834, guid: 15eb949f4dc2a014f87593e743d9f502, type: 3}
+  - {fileID: 674735420195716390, guid: 7d318128a3a3137448f7211064056a52, type: 3}
+  - {fileID: 8159732819706098372, guid: 33e4551f7c3a2aa4da9b727b09c5c545, type: 3}
+  - {fileID: 3828579570554239262, guid: 50577edca231c5044938ccf350af0469, type: 3}
+  - {fileID: 7042015921898664243, guid: 11af3a39eec7f434a88998294b685de8, type: 3}
+  - {fileID: 9204088898133200756, guid: d49604fa319f94e42a18092073c4354c, type: 3}
+  - {fileID: 5411882223251862241, guid: 496fa49e2cac85348945c2e1cf413dcf, type: 3}
+  asphalt: {fileID: 2100000, guid: 3240425c6dc1c6942986d85885826fa4, type: 2}
+  concrete: {fileID: 2100000, guid: e0ecfa5aaf600e24dbec705f4cb577a7, type: 2}
+  grass: {fileID: 2100000, guid: 1555016d782aa07438d7de121758d858, type: 2}
+  sand: {fileID: 2100000, guid: ee8dc112b1721634fa7fc7cf4f916123, type: 2}
+  water: {fileID: 2100000, guid: 9371568ca7929224797dd1f1b5fd9556, type: 2}
+  marking: {fileID: 2100000, guid: 5a58f2d43ab05bf40ba8f2282229cdd7, type: 2}
+  particle: {fileID: 2100000, guid: 73673032fa6f2a24b9850f4b24d38728, type: 2}

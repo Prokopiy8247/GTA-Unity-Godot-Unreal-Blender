@@ -1,0 +1,76 @@
+PASS | 54 Blender assets integrated | 54
+PASS | Free roam bootstrap | 
+PASS | World sectors | 
+PASS | Rendered frame 01-downtown | 2505 sampled colors; 59,8 FPS
+PASS | Player moves | 
+PASS | Traffic population | 
+PASS | Pedestrian population | 
+PASS | Traffic follows lanes | 
+PASS | Drive Aster_Sedan | 6,85 m/s
+PASS | Exit 0 | 
+PASS | Damage 0 | 
+PASS | Repair 0 | 
+PASS | Drive Mica_Compact | 7,14 m/s
+PASS | Exit 1 | 
+PASS | Damage 1 | 
+PASS | Repair 1 | 
+PASS | Drive Vela_Sport | 11,36 m/s
+PASS | Exit 2 | 
+PASS | Damage 2 | 
+PASS | Repair 2 | 
+PASS | Drive Bison_Muscle | 9,25 m/s
+PASS | Exit 3 | 
+PASS | Damage 3 | 
+PASS | Repair 3 | 
+PASS | Drive Atlas_SUV | 5,48 m/s
+PASS | Exit 4 | 
+PASS | Damage 4 | 
+PASS | Repair 4 | 
+PASS | Drive Ranger_Pickup | 6,58 m/s
+PASS | Exit 5 | 
+PASS | Damage 5 | 
+PASS | Repair 5 | 
+PASS | Drive Courier_Van | 5,55 m/s
+PASS | Exit 6 | 
+PASS | Damage 6 | 
+PASS | Repair 6 | 
+PASS | Drive Sentinel_Police | 8,05 m/s
+PASS | Exit 7 | 
+PASS | Damage 7 | 
+PASS | Repair 7 | 
+PASS | Drive Metro_Taxi | 6,80 m/s
+PASS | Exit 8 | 
+PASS | Damage 8 | 
+PASS | Repair 8 | 
+PASS | Drive Arrow_Motorcycle | 17,35 m/s
+PASS | Exit 9 | 
+PASS | Damage 9 | 
+PASS | Repair 9 | 
+PASS | Drive Comet_Bicycle | 7,64 m/s
+PASS | Exit 10 | 
+PASS | Damage 10 | 
+PASS | Repair 10 | 
+PASS | Rendered frame 05-street-vehicles | 2405 sampled colors; 59,6 FPS
+PASS | Raycast combat damages NPC | 
+PASS | Magazine reload | 
+PASS | Articulated ragdoll | 
+PASS | Unwitnessed crime stays unknown | 
+PASS | Delayed witness report | 
+PASS | Five-star response | 
+PASS | Police line of sight | 
+PASS | Real search after LOS loss | 
+PASS | Unseen wanted decay | 
+PASS | Save/load restores cash | 
+PASS | Malformed save rejected | 
+PASS | District accessible 0 | Central Exchange
+PASS | District accessible 1 | Westhaven Homes
+PASS | District accessible 2 | Foundry District
+PASS | District accessible 3 | Breakwater Port
+PASS | District accessible 4 | Sable Beach
+PASS | District accessible 5 | Meridian Airport
+PASS | District accessible 6 | Greenridge Farms
+PASS | District accessible 7 | Northwatch Hills
+PASS | District accessible 8 | Coastal Highway
+PASS | Rendered frame 02-airport | 1667 sampled colors; 60,0 FPS
+PASS | Helicopter 12 lift | 16,2
+PASS | Helicopter 13 lift | 16,1

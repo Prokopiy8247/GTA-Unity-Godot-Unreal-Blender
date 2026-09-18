@@ -5,10 +5,20 @@
 | Движок | Проект | Готовая игра |
 | --- | --- | --- |
 | Godot | [Godot GTA](Godot%20GTA/) | [Windows / macOS](https://github.com/Prokopiy8247/GTA-Unity-Godot-Unreal-Blender/releases/tag/godot-v0.1.0) |
-| Unity | Папка Unity GTA будет добавлена позже | Пока нет |
+| Unity | [Unity GTA](Unity%20GTA/) | [Windows / macOS](https://github.com/Prokopiy8247/GTA-Unity-Godot-Unreal-Blender/releases/tag/unity-v1.0.0) |
 | Unreal Engine | Папка Unreal GTA будет добавлена позже | Пока нет |
 
-## Хочу просто поиграть
+## Unity — скачать и играть
+
+**[Windows ZIP](https://github.com/Prokopiy8247/GTA-Unity-Godot-Unreal-Blender/releases/download/unity-v1.0.0/Meridian-Coast-Windows-x64.zip)** · **[macOS Universal ZIP](https://github.com/Prokopiy8247/GTA-Unity-Godot-Unreal-Blender/releases/download/unity-v1.0.0/Meridian-Coast-macOS-Universal.zip)**
+
+Распакуйте архив и запустите `PLAY.cmd` / `MeridianCoast.exe` на Windows или `Meridian Coast.app` на Mac. Unity и Blender для готовой игры не нужны. [Пошаговая инструкция](Unity%20GTA/Docs/PLAY_RU.md). **F1** — меню песочницы, **F11** — полный экран.
+
+![Unity: Meridian Coast](Unity%20GTA/Docs/Images/gameplay.jpg)
+
+[Unity-исходники](Unity%20GTA/) · [Исходный Unity-промпт](Unity%20GTA/GPT-6-Astra_Unity_GTA_BlenderMCP_Prompt.md) · [Возможности и ограничения Unity](Unity%20GTA/FEATURE_MATRIX.md)
+
+## Godot — скачать и играть
 
 Откройте [Releases](https://github.com/Prokopiy8247/GTA-Unity-Godot-Unreal-Blender/releases/tag/godot-v0.1.0), скачайте архив своей платформы и распакуйте.
 
