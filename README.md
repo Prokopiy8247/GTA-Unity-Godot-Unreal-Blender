@@ -20,6 +20,8 @@
 
 ## Godot — скачать и играть
 
+[Скачать Godot для Windows](https://github.com/Prokopiy8247/GTA-Unity-Godot-Unreal-Blender/releases/download/godot-v0.1.0/MeridianCoast-Windows-x64.zip) · [Скачать Godot для Mac](https://github.com/Prokopiy8247/GTA-Unity-Godot-Unreal-Blender/releases/download/godot-v0.1.0/MeridianCoast-macOS-Universal.zip)
+
 Откройте [Releases](https://github.com/Prokopiy8247/GTA-Unity-Godot-Unreal-Blender/releases/tag/godot-v0.1.0), скачайте архив своей платформы и распакуйте.
 
 - **Windows:** `MeridianCoast-Windows-x64.zip` → `Meridian Coast.exe`.
