@@ -33,6 +33,10 @@ Unity, Blender, Git и инструменты программирования �
 | F1 / F11 | Меню песочницы / полный экран |
 | F5 / F9 | Сохранить / загрузить |
 
+## Проверено
+
+Windows: 88 игровых проверок. Mac Intel и Apple Silicon: по 81 проверке запуска и логики, без проверки изображения в headless-режиме. [Результаты GitHub Actions](https://github.com/Prokopiy8247/GTA-Unity-Godot-Unreal-Blender/actions/runs/35350545523).
+
 ## Для разработчиков
 
 Unity **6000.6.0f1**, URP **17.6.0**, C#. В Unity Hub добавьте именно папку `Unity GTA`, откройте `Assets/GTA/Scenes/Meridian_FreeRoam.unity` и нажмите Play. Сцена собирает мир автоматически. Импортированные модели и префабы уже включены; Blender для запуска проекта не требуется.

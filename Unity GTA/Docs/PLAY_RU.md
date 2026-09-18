@@ -7,7 +7,7 @@
 Откройте [релиз Unity v1.0.0](https://github.com/Prokopiy8247/GTA-Unity-Godot-Unreal-Blender/releases/tag/unity-v1.0.0). В разделе **Assets** выберите архив своей системы:
 
 - **Meridian-Coast-Windows-x64.zip** — Windows 10/11, 64-bit, Intel/AMD.
-- **Meridian-Coast-macOS-Universal.zip** — Mac с Intel или Apple Silicon, например M1/M2/M3/M4/M5. Нужна поддержка Metal; минимальная версия системы указана в приложении.
+- **Meridian-Coast-macOS-Universal.zip** — Mac с Intel или Apple Silicon, например M1/M2/M3/M4/M5. macOS 12 Monterey или новее, с поддержкой Metal.
 
 **Source code (zip)** и **Source code (tar.gz)** содержат исходники для разработчиков. Для обычной игры выбирайте архив с названием Meridian-Coast.
 

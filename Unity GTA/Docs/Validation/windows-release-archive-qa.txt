@@ -1,7 +1,7 @@
 PASS | 54 Blender assets integrated | 54
 PASS | Free roam bootstrap |
 PASS | World sectors |
-PASS | Rendered frame 01-downtown | 2505 sampled colors; 59,8 FPS
+PASS | Rendered frame 01-downtown | 1862 sampled colors; 59,8 FPS
 PASS | Player moves |
 PASS | Traffic population |
 PASS | Pedestrian population |
@@ -50,7 +50,7 @@ PASS | Drive Comet_Bicycle | 7,64 m/s
 PASS | Exit 10 |
 PASS | Damage 10 |
 PASS | Repair 10 |
-PASS | Rendered frame 05-street-vehicles | 2405 sampled colors; 59,6 FPS
+PASS | Rendered frame 05-street-vehicles | 1881 sampled colors; 60,0 FPS
 PASS | Raycast combat damages NPC |
 PASS | Magazine reload |
 PASS | Articulated ragdoll |
@@ -71,6 +71,20 @@ PASS | District accessible 5 | Meridian Airport
 PASS | District accessible 6 | Greenridge Farms
 PASS | District accessible 7 | Northwatch Hills
 PASS | District accessible 8 | Coastal Highway
-PASS | Rendered frame 02-airport | 1667 sampled colors; 60,0 FPS
-PASS | Helicopter 12 lift | 16,2
+PASS | Rendered frame 02-airport | 1377 sampled colors; 60,0 FPS
+PASS | Helicopter 12 lift | 16,3
 PASS | Helicopter 13 lift | 16,1
+PASS | Airplane powered flight | 73,3 m/s; altitude 58,6
+PASS | Rendered frame 06-flight | 1466 sampled colors; 60,0 FPS
+PASS | Boat buoyancy and propulsion |
+PASS | Rendered frame 07-coast | 2203 sampled colors; 60,0 FPS
+PASS | Swimming |
+PASS | Diving breath |
+PASS | Rendered frame 03-rain-night | 1020 sampled colors; 60,0 FPS
+PASS | Weather state |
+PASS | Rendered frame 04-sandbox-menu | 448 sampled colors; 57,9 FPS
+PASS | Taxi passenger boarding |
+PASS | Taxi arrival |
+PASS | No runtime exceptions | 0
+PERFORMANCE average FPS 59,6; worst frame ms 332,7
+WALL SECONDS 96,6

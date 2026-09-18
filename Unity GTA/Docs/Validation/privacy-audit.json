@@ -5,5 +5,10 @@
   "fbx_metadata_fields_normalized": 65,
   "blender_metadata_fields_normalized": 1,
   "windows_binary_metadata_findings": 0,
-  "macos_binary_metadata_findings": 0
+  "macos_binary_metadata_findings": 0,
+  "gitleaks_version": "8.30.1",
+  "gitleaks_source_findings": 0,
+  "gitleaks_history_findings": 0,
+  "public_commits_scanned": 5,
+  "utf8_utf16_personal_metadata_findings": 0
 }
