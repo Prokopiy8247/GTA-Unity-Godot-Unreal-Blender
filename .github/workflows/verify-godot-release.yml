@@ -14,6 +14,7 @@ env:
   RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag || 'godot-v0.1.0' }}
 jobs:
   windows:
+    if: startsWith(github.event.release.tag_name || inputs.tag, 'godot-')
     runs-on: windows-latest
     timeout-minutes: 15
     steps:
@@ -34,6 +35,7 @@ jobs:
           Get-Content smoke-errors.log
           if ($proc.ExitCode -ne 0 -or -not (Select-String -Path smoke.log -Pattern 'SMOKE_RESULT PASS' -Quiet)) { throw 'Game smoke test failed' }
   macos:
+    if: startsWith(github.event.release.tag_name || inputs.tag, 'godot-')
     runs-on: macos-14
     timeout-minutes: 15
     steps:
