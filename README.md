@@ -6,7 +6,17 @@
 | --- | --- | --- |
 | Godot | [Godot GTA](Godot%20GTA/) | [Windows / macOS](https://github.com/Prokopiy8247/GTA-Unity-Godot-Unreal-Blender/releases/tag/godot-v0.1.0) |
 | Unity | [Unity GTA](Unity%20GTA/) | [Windows / macOS](https://github.com/Prokopiy8247/GTA-Unity-Godot-Unreal-Blender/releases/tag/unity-v1.0.0) |
-| Unreal Engine | Папка Unreal GTA будет добавлена позже | Пока нет |
+| Unreal Engine 5 | [Unreal Engine 5 GTA](Unreal%20Engine%205%20GTA/) | [Windows](https://github.com/Prokopiy8247/GTA-Unity-Godot-Unreal-Blender/releases/tag/port-meridian-v0.1.0); macOS: source build |
+
+## Unreal Engine 5 — Port Meridian
+
+**[Скачать Windows ZIP](https://github.com/Prokopiy8247/GTA-Unity-Godot-Unreal-Blender/releases/download/port-meridian-v0.1.0/PortMeridian-Windows-x64.zip)** · **[Инструкция для Windows и macOS](Unreal%20Engine%205%20GTA/START_HERE.md)**
+
+Windows: распакуйте архив и откройте **Играть.cmd**. Unreal и Blender для готовой игры не нужны.
+
+Mac: в исходниках есть автоматический запуск **Launch_PortMeridian.command** после установки UE 5.8.2 и совместимого Xcode. Готовой проверенной .app-сборки пока нет.
+
+[Исходный проект](Unreal%20Engine%205%20GTA/) · [Полный Unreal-промпт](Unreal%20Engine%205%20GTA/GPT-6-Astra_UnrealEngine5_GTA_BlenderMCP_Prompt.md) · [Ограничения](Unreal%20Engine%205%20GTA/FEATURE_MATRIX.md)
 
 ## Unity — скачать и играть
 

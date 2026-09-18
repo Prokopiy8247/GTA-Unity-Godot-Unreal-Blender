@@ -1,0 +1,13 @@
+* text=auto
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+*.sh text eol=lf
+*.command text eol=lf
+*.uasset -text
+*.umap -text
+*.fbx -text
+*.blend -text
+*.wav -text
+*.png -text
+*.jpg -text
+GPT-6-Astra_UnrealEngine5_GTA_BlenderMCP_Prompt.md -text

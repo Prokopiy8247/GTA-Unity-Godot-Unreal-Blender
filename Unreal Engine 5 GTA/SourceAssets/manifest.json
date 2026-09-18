@@ -1,0 +1,1614 @@
+{
+  "materials": {
+    "Amber": {
+      "color": [
+        1,
+        0.3499999940395355,
+        0.019999999552965164
+      ],
+      "metal": 0,
+      "rough": 0.3,
+      "emit": 2
+    },
+    "Asphalt": {
+      "color": [
+        0.04399999976158142,
+        0.052000001072883606,
+        0.05900000035762787
+      ],
+      "metal": 0,
+      "rough": 0.87,
+      "emit": 0
+    },
+    "Badge": {
+      "color": [
+        0.6100000143051147,
+        0.44999998807907104,
+        0.1599999964237213
+      ],
+      "metal": 0.85,
+      "rough": 0.25,
+      "emit": 0
+    },
+    "Brick": {
+      "color": [
+        0.30000001192092896,
+        0.11999999731779099,
+        0.07000000029802322
+      ],
+      "metal": 0,
+      "rough": 0.88,
+      "emit": 0
+    },
+    "BrushedAlloy": {
+      "color": [
+        0.4000000059604645,
+        0.4399999976158142,
+        0.46000000834465027
+      ],
+      "metal": 0.85,
+      "rough": 0.27,
+      "emit": 0
+    },
+    "Canopy": {
+      "color": [
+        0.6499999761581421,
+        0.1899999976158142,
+        0.05999999865889549
+      ],
+      "metal": 0,
+      "rough": 0.68,
+      "emit": 0
+    },
+    "Concrete": {
+      "color": [
+        0.3799999952316284,
+        0.3700000047683716,
+        0.3400000035762787
+      ],
+      "metal": 0,
+      "rough": 0.88,
+      "emit": 0
+    },
+    "ContainerTeal": {
+      "color": [
+        0.054999999701976776,
+        0.1899999976158142,
+        0.20999999344348907
+      ],
+      "metal": 0.4,
+      "rough": 0.55,
+      "emit": 0
+    },
+    "CraneOchre": {
+      "color": [
+        0.47999998927116394,
+        0.2800000011920929,
+        0.06499999761581421
+      ],
+      "metal": 0.55,
+      "rough": 0.55,
+      "emit": 0
+    },
+    "Denim_Citizen": {
+      "color": [
+        0.03500000014901161,
+        0.04500000178813934,
+        0.06400000303983688
+      ],
+      "metal": 0,
+      "rough": 0.91,
+      "emit": 0
+    },
+    "Denim_CitizenF": {
+      "color": [
+        0.03500000014901161,
+        0.04500000178813934,
+        0.06400000303983688
+      ],
+      "metal": 0,
+      "rough": 0.91,
+      "emit": 0
+    },
+    "Denim_Police": {
+      "color": [
+        0.03500000014901161,
+        0.04500000178813934,
+        0.06400000303983688
+      ],
+      "metal": 0,
+      "rough": 0.91,
+      "emit": 0
+    },
+    "Denim_Tactical": {
+      "color": [
+        0.03500000014901161,
+        0.04500000178813934,
+        0.06400000303983688
+      ],
+      "metal": 0,
+      "rough": 0.91,
+      "emit": 0
+    },
+    "Fabric": {
+      "color": [
+        0.03999999910593033,
+        0.06499999761581421,
+        0.08500000089406967
+      ],
+      "metal": 0,
+      "rough": 0.94,
+      "emit": 0
+    },
+    "Foliage": {
+      "color": [
+        0.07500000298023224,
+        0.15000000596046448,
+        0.03500000014901161
+      ],
+      "metal": 0,
+      "rough": 0.92,
+      "emit": 0
+    },
+    "Graphite": {
+      "color": [
+        0.03500000014901161,
+        0.04500000178813934,
+        0.054999999701976776
+      ],
+      "metal": 0.45,
+      "rough": 0.43,
+      "emit": 0
+    },
+    "Green": {
+      "color": [
+        0.019999999552965164,
+        0.6200000047683716,
+        0.18000000715255737
+      ],
+      "metal": 0,
+      "rough": 0.3,
+      "emit": 2
+    },
+    "Ground": {
+      "color": [
+        0.1899999976158142,
+        0.2199999988079071,
+        0.11999999731779099
+      ],
+      "metal": 0,
+      "rough": 0.87,
+      "emit": 0
+    },
+    "Gunmetal": {
+      "color": [
+        0.07999999821186066,
+        0.08500000089406967,
+        0.0949999988079071
+      ],
+      "metal": 0.8,
+      "rough": 0.35,
+      "emit": 0
+    },
+    "Hair_Citizen": {
+      "color": [
+        0.03500000014901161,
+        0.02199999988079071,
+        0.013000000268220901
+      ],
+      "metal": 0,
+      "rough": 0.86,
+      "emit": 0
+    },
+    "Hair_CitizenF": {
+      "color": [
+        0.03500000014901161,
+        0.02199999988079071,
+        0.013000000268220901
+      ],
+      "metal": 0,
+      "rough": 0.86,
+      "emit": 0
+    },
+    "Hair_Police": {
+      "color": [
+        0.03500000014901161,
+        0.02199999988079071,
+        0.013000000268220901
+      ],
+      "metal": 0,
+      "rough": 0.86,
+      "emit": 0
+    },
+    "Hair_Tactical": {
+      "color": [
+        0.03500000014901161,
+        0.02199999988079071,
+        0.013000000268220901
+      ],
+      "metal": 0,
+      "rough": 0.86,
+      "emit": 0
+    },
+    "Headlamp": {
+      "color": [
+        0.8199999928474426,
+        0.9300000071525574,
+        1
+      ],
+      "metal": 0.2,
+      "rough": 0.19,
+      "emit": 3
+    },
+    "Ivory": {
+      "color": [
+        0.75,
+        0.7900000214576721,
+        0.800000011920929
+      ],
+      "metal": 0.15,
+      "rough": 0.4,
+      "emit": 0
+    },
+    "Jacket_Citizen": {
+      "color": [
+        0.11999999731779099,
+        0.0949999988079071,
+        0.07000000029802322
+      ],
+      "metal": 0,
+      "rough": 0.86,
+      "emit": 0
+    },
+    "Jacket_CitizenF": {
+      "color": [
+        0.11999999731779099,
+        0.18000000715255737,
+        0.1899999976158142
+      ],
+      "metal": 0,
+      "rough": 0.86,
+      "emit": 0
+    },
+    "Jacket_Police": {
+      "color": [
+        0.054999999701976776,
+        0.0820000022649765,
+        0.11500000208616257
+      ],
+      "metal": 0,
+      "rough": 0.86,
+      "emit": 0
+    },
+    "Jacket_Tactical": {
+      "color": [
+        0.054999999701976776,
+        0.0820000022649765,
+        0.11500000208616257
+      ],
+      "metal": 0,
+      "rough": 0.86,
+      "emit": 0
+    },
+    "Lips": {
+      "color": [
+        0.3100000023841858,
+        0.10499999672174454,
+        0.07500000298023224
+      ],
+      "metal": 0,
+      "rough": 0.6,
+      "emit": 0
+    },
+    "Marking": {
+      "color": [
+        0.7900000214576721,
+        0.7699999809265137,
+        0.6200000047683716
+      ],
+      "metal": 0,
+      "rough": 0.87,
+      "emit": 0
+    },
+    "Ordnance": {
+      "color": [
+        0.17000000178813934,
+        0.1899999976158142,
+        0.07000000029802322
+      ],
+      "metal": 0.4,
+      "rough": 0.65,
+      "emit": 0
+    },
+    "OrdnanceOlive": {
+      "color": [
+        0.11999999731779099,
+        0.15000000596046448,
+        0.05999999865889549
+      ],
+      "metal": 0.35,
+      "rough": 0.6,
+      "emit": 0
+    },
+    "Paint_Airplane": {
+      "color": [
+        0.7599999904632568,
+        0.75,
+        0.6800000071525574
+      ],
+      "metal": 0.55,
+      "rough": 0.3,
+      "emit": 0
+    },
+    "Paint_Compact": {
+      "color": [
+        0.23999999463558197,
+        0.3799999952316284,
+        0.41999998688697815
+      ],
+      "metal": 0.68,
+      "rough": 0.27,
+      "emit": 0
+    },
+    "Paint_Helicopter": {
+      "color": [
+        0.6399999856948853,
+        0.6700000166893005,
+        0.6600000262260437
+      ],
+      "metal": 0.6,
+      "rough": 0.3,
+      "emit": 0
+    },
+    "Paint_Motorcycle": {
+      "color": [
+        0.1899999976158142,
+        0.02500000037252903,
+        0.017999999225139618
+      ],
+      "metal": 0.65,
+      "rough": 0.23,
+      "emit": 0
+    },
+    "Paint_Muscle": {
+      "color": [
+        0.20999999344348907,
+        0.25,
+        0.28999999165534973
+      ],
+      "metal": 0.68,
+      "rough": 0.27,
+      "emit": 0
+    },
+    "Paint_Ocean": {
+      "color": [
+        0.03500000014901161,
+        0.15000000596046448,
+        0.20000000298023224
+      ],
+      "metal": 0.72,
+      "rough": 0.24,
+      "emit": 0
+    },
+    "Paint_Pickup": {
+      "color": [
+        0.2800000011920929,
+        0.12999999523162842,
+        0.06499999761581421
+      ],
+      "metal": 0.68,
+      "rough": 0.27,
+      "emit": 0
+    },
+    "Paint_Police": {
+      "color": [
+        0.03500000014901161,
+        0.04500000178813934,
+        0.054999999701976776
+      ],
+      "metal": 0.68,
+      "rough": 0.27,
+      "emit": 0
+    },
+    "Paint_PoliceHelicopter": {
+      "color": [
+        0.03500000014901161,
+        0.054999999701976776,
+        0.07000000029802322
+      ],
+      "metal": 0.6,
+      "rough": 0.3,
+      "emit": 0
+    },
+    "Paint_Sedan": {
+      "color": [
+        0.03999999910593033,
+        0.12999999523162842,
+        0.1899999976158142
+      ],
+      "metal": 0.68,
+      "rough": 0.27,
+      "emit": 0
+    },
+    "Paint_Sport": {
+      "color": [
+        0.550000011920929,
+        0.07500000298023224,
+        0.02500000037252903
+      ],
+      "metal": 0.68,
+      "rough": 0.27,
+      "emit": 0
+    },
+    "Paint_SUV": {
+      "color": [
+        0.1599999964237213,
+        0.18000000715255737,
+        0.14000000059604645
+      ],
+      "metal": 0.68,
+      "rough": 0.27,
+      "emit": 0
+    },
+    "Paint_Van": {
+      "color": [
+        0.6299999952316284,
+        0.6200000047683716,
+        0.5600000023841858
+      ],
+      "metal": 0.68,
+      "rough": 0.27,
+      "emit": 0
+    },
+    "PoliceBlue": {
+      "color": [
+        0.014999999664723873,
+        0.1599999964237213,
+        0.949999988079071
+      ],
+      "metal": 0.1,
+      "rough": 0.22,
+      "emit": 5
+    },
+    "Rubber": {
+      "color": [
+        0.014999999664723873,
+        0.01899999938905239,
+        0.020999999716877937
+      ],
+      "metal": 0,
+      "rough": 0.8,
+      "emit": 0
+    },
+    "Sand": {
+      "color": [
+        0.5199999809265137,
+        0.4300000071525574,
+        0.27000001072883606
+      ],
+      "metal": 0,
+      "rough": 0.87,
+      "emit": 0
+    },
+    "Sidewalk": {
+      "color": [
+        0.4000000059604645,
+        0.38999998569488525,
+        0.3499999940395355
+      ],
+      "metal": 0,
+      "rough": 0.87,
+      "emit": 0
+    },
+    "Skin_Citizen": {
+      "color": [
+        0.46000000834465027,
+        0.2549999952316284,
+        0.15000000596046448
+      ],
+      "metal": 0,
+      "rough": 0.6,
+      "emit": 0
+    },
+    "Skin_CitizenF": {
+      "color": [
+        0.6600000262260437,
+        0.38999998569488525,
+        0.25999999046325684
+      ],
+      "metal": 0,
+      "rough": 0.6,
+      "emit": 0
+    },
+    "Skin_Police": {
+      "color": [
+        0.46000000834465027,
+        0.2549999952316284,
+        0.15000000596046448
+      ],
+      "metal": 0,
+      "rough": 0.6,
+      "emit": 0
+    },
+    "Skin_Tactical": {
+      "color": [
+        0.6600000262260437,
+        0.38999998569488525,
+        0.25999999046325684
+      ],
+      "metal": 0,
+      "rough": 0.6,
+      "emit": 0
+    },
+    "Smoke": {
+      "color": [
+        0.11999999731779099,
+        0.11999999731779099,
+        0.12999999523162842
+      ],
+      "metal": 0,
+      "rough": 1,
+      "emit": 0
+    },
+    "SmokedGlass": {
+      "color": [
+        0.03500000014901161,
+        0.09000000357627869,
+        0.11999999731779099
+      ],
+      "metal": 0.5,
+      "rough": 0.12,
+      "emit": 0
+    },
+    "TailLamp": {
+      "color": [
+        0.699999988079071,
+        0.014999999664723873,
+        0.00800000037997961
+      ],
+      "metal": 0.1,
+      "rough": 0.24,
+      "emit": 2
+    },
+    "TerrainRock": {
+      "color": [
+        0.20999999344348907,
+        0.23000000417232513,
+        0.15000000596046448
+      ],
+      "metal": 0,
+      "rough": 0.94,
+      "emit": 0
+    },
+    "Water": {
+      "color": [
+        0.017999999225139618,
+        0.17000000178813934,
+        0.2199999988079071
+      ],
+      "metal": 0.08,
+      "rough": 0.15,
+      "emit": 0
+    },
+    "WeaponPolymer": {
+      "color": [
+        0.03500000014901161,
+        0.032999999821186066,
+        0.028999999165534973
+      ],
+      "metal": 0.05,
+      "rough": 0.8,
+      "emit": 0
+    },
+    "Wood": {
+      "color": [
+        0.23000000417232513,
+        0.11500000208616257,
+        0.04399999976158142
+      ],
+      "metal": 0,
+      "rough": 0.78,
+      "emit": 0
+    }
+  },
+  "assets": {
+    "SK_Citizen": {
+      "vertices": 7062,
+      "materials": [
+        "Jacket_Citizen",
+        "Denim_Citizen",
+        "Skin_Citizen",
+        "Hair_Citizen",
+        "Lips",
+        "Ivory",
+        "Graphite",
+        "Rubber",
+        "BrushedAlloy"
+      ],
+      "dimensions": [
+        0.3790000081062317,
+        0.7449599504470825,
+        1.8350000381469727
+      ]
+    },
+    "SK_CitizenF": {
+      "vertices": 7424,
+      "materials": [
+        "Jacket_CitizenF",
+        "Denim_CitizenF",
+        "Skin_CitizenF",
+        "Hair_CitizenF",
+        "Lips",
+        "Ivory",
+        "Graphite",
+        "Rubber",
+        "BrushedAlloy"
+      ],
+      "dimensions": [
+        0.3790000081062317,
+        0.6879599094390869,
+        1.8630000352859497
+      ]
+    },
+    "SK_Police": {
+      "vertices": 7728,
+      "materials": [
+        "Jacket_Police",
+        "Denim_Police",
+        "Skin_Police",
+        "Hair_Police",
+        "Lips",
+        "Ivory",
+        "Graphite",
+        "Rubber",
+        "BrushedAlloy",
+        "Badge"
+      ],
+      "dimensions": [
+        0.3790000081062317,
+        0.7449599504470825,
+        1.8429999351501465
+      ]
+    },
+    "SK_Tactical": {
+      "vertices": 8400,
+      "materials": [
+        "Jacket_Tactical",
+        "Denim_Tactical",
+        "Skin_Tactical",
+        "Hair_Tactical",
+        "Lips",
+        "Ivory",
+        "Graphite",
+        "Rubber",
+        "BrushedAlloy",
+        "Badge",
+        "Fabric"
+      ],
+      "dimensions": [
+        0.3894999921321869,
+        0.7449599504470825,
+        1.8429999351501465
+      ]
+    },
+    "SM_Airplane": {
+      "vertices": 1306,
+      "materials": [
+        "Paint_Airplane",
+        "SmokedGlass",
+        "BrushedAlloy",
+        "Rubber",
+        "TailLamp",
+        "Headlamp"
+      ],
+      "dimensions": [
+        7.900000095367432,
+        11.109999656677246,
+        2.819999933242798
+      ]
+    },
+    "SM_Apartment": {
+      "vertices": 21912,
+      "materials": [
+        "Brick",
+        "Concrete",
+        "SmokedGlass",
+        "BrushedAlloy",
+        "Graphite"
+      ],
+      "dimensions": [
+        22.5,
+        21,
+        25
+      ]
+    },
+    "SM_Asphalt": {
+      "vertices": 8,
+      "materials": [
+        "Asphalt"
+      ],
+      "dimensions": [
+        1,
+        1,
+        0.10000000149011612
+      ]
+    },
+    "SM_Barrier": {
+      "vertices": 192,
+      "materials": [
+        "Concrete",
+        "Headlamp"
+      ],
+      "dimensions": [
+        3,
+        0.6225000023841858,
+        0.800000011920929
+      ]
+    },
+    "SM_Bat": {
+      "vertices": 474,
+      "materials": [
+        "WeaponPolymer",
+        "BrushedAlloy"
+      ],
+      "dimensions": [
+        0.8380000591278076,
+        0.07599999755620956,
+        0.07600000500679016
+      ]
+    },
+    "SM_Bench": {
+      "vertices": 1080,
+      "materials": [
+        "Wood",
+        "Graphite"
+      ],
+      "dimensions": [
+        1.899999976158142,
+        0.5689071416854858,
+        0.9825117588043213
+      ]
+    },
+    "SM_Bin": {
+      "vertices": 128,
+      "materials": [
+        "Graphite",
+        "BrushedAlloy"
+      ],
+      "dimensions": [
+        0.6000000238418579,
+        0.6000000238418579,
+        0.9599999785423279
+      ]
+    },
+    "SM_Boat": {
+      "vertices": 958,
+      "materials": [
+        "Ivory",
+        "Wood",
+        "BrushedAlloy",
+        "SmokedGlass",
+        "Graphite"
+      ],
+      "dimensions": [
+        6.5,
+        2.4235639572143555,
+        2.0999999046325684
+      ]
+    },
+    "SM_BusStop": {
+      "vertices": 336,
+      "materials": [
+        "BrushedAlloy",
+        "SmokedGlass",
+        "Wood"
+      ],
+      "dimensions": [
+        4.5,
+        1.649999976158142,
+        2.6599998474121094
+      ]
+    },
+    "SM_Carbine": {
+      "vertices": 3752,
+      "materials": [
+        "Gunmetal",
+        "Rubber",
+        "WeaponPolymer",
+        "BrushedAlloy"
+      ],
+      "dimensions": [
+        1.102000117301941,
+        0.06700000166893005,
+        0.2954999804496765
+      ]
+    },
+    "SM_Compact": {
+      "vertices": 4420,
+      "materials": [
+        "Paint_Compact",
+        "",
+        "SmokedGlass",
+        "Graphite",
+        "BrushedAlloy",
+        "Rubber",
+        "Headlamp",
+        "TailLamp",
+        "Fabric",
+        "Ivory"
+      ],
+      "dimensions": [
+        4.098999977111816,
+        2.130000114440918,
+        1.2349998950958252
+      ]
+    },
+    "SM_Container": {
+      "vertices": 9312,
+      "materials": [
+        "ContainerTeal",
+        "BrushedAlloy"
+      ],
+      "dimensions": [
+        12.199999809265137,
+        2.5199999809265137,
+        2.5999999046325684
+      ]
+    },
+    "SM_ExtendedMagazine": {
+      "vertices": 960,
+      "materials": [
+        "Graphite",
+        "BrushedAlloy",
+        "Rubber"
+      ],
+      "dimensions": [
+        0.06400000303983688,
+        0.041999999433755875,
+        0.1340000033378601
+      ]
+    },
+    "SM_Foregrip": {
+      "vertices": 376,
+      "materials": [
+        "BrushedAlloy",
+        "Rubber",
+        "Graphite"
+      ],
+      "dimensions": [
+        0.0560000017285347,
+        0.04100000113248825,
+        0.12623754143714905
+      ]
+    },
+    "SM_Garage": {
+      "vertices": 7896,
+      "materials": [
+        "Concrete",
+        "SmokedGlass",
+        "Graphite",
+        "BrushedAlloy"
+      ],
+      "dimensions": [
+        26.5,
+        24.5,
+        7
+      ]
+    },
+    "SM_Grenade": {
+      "vertices": 490,
+      "materials": [
+        "OrdnanceOlive",
+        "BrushedAlloy"
+      ],
+      "dimensions": [
+        0.06999997794628143,
+        0.06999996304512024,
+        0.12999999523162842
+      ]
+    },
+    "SM_Ground": {
+      "vertices": 8,
+      "materials": [
+        "Ground"
+      ],
+      "dimensions": [
+        1,
+        1,
+        0.10000000149011612
+      ]
+    },
+    "SM_Hangar": {
+      "vertices": 9240,
+      "materials": [
+        "Concrete",
+        "SmokedGlass",
+        "Graphite",
+        "BrushedAlloy"
+      ],
+      "dimensions": [
+        48.5,
+        44.5,
+        17
+      ]
+    },
+    "SM_Helicopter": {
+      "vertices": 2358,
+      "materials": [
+        "Paint_Helicopter",
+        "SmokedGlass",
+        "BrushedAlloy",
+        "Graphite"
+      ],
+      "dimensions": [
+        10.359999656677246,
+        2.523637533187866,
+        3.315000057220459
+      ]
+    },
+    "SM_Hill": {
+      "vertices": 2401,
+      "materials": [
+        "TerrainRock"
+      ],
+      "dimensions": [
+        240,
+        240,
+        58.54252624511719
+      ]
+    },
+    "SM_House": {
+      "vertices": 2142,
+      "materials": [
+        "Ivory",
+        "Concrete",
+        "SmokedGlass",
+        "Graphite",
+        "BrushedAlloy",
+        "Brick"
+      ],
+      "dimensions": [
+        14.199999809265137,
+        14,
+        8.699999809265137
+      ]
+    },
+    "SM_Hydrant": {
+      "vertices": 450,
+      "materials": [
+        "TailLamp",
+        "BrushedAlloy"
+      ],
+      "dimensions": [
+        0.5400000214576721,
+        0.3199998736381531,
+        0.9199999570846558
+      ]
+    },
+    "SM_Knife": {
+      "vertices": 105,
+      "materials": [
+        "WeaponPolymer",
+        "BrushedAlloy"
+      ],
+      "dimensions": [
+        0.3449999988079071,
+        0.035999998450279236,
+        0.027000000700354576
+      ]
+    },
+    "SM_Lamp": {
+      "vertices": 332,
+      "materials": [
+        "BrushedAlloy",
+        "Graphite",
+        "Headlamp"
+      ],
+      "dimensions": [
+        0.41999998688697815,
+        3.184999942779541,
+        8.214932441711426
+      ]
+    },
+    "SM_Launcher": {
+      "vertices": 320,
+      "materials": [
+        "Ordnance",
+        "Rubber",
+        "WeaponPolymer",
+        "BrushedAlloy"
+      ],
+      "dimensions": [
+        1.0299999713897705,
+        0.19600000977516174,
+        0.3450000286102295
+      ]
+    },
+    "SM_Lighthouse": {
+      "vertices": 960,
+      "materials": [
+        "Ivory",
+        "Brick",
+        "SmokedGlass",
+        "BrushedAlloy"
+      ],
+      "dimensions": [
+        4.400000095367432,
+        4.400000095367432,
+        20.5
+      ]
+    },
+    "SM_Marking": {
+      "vertices": 8,
+      "materials": [
+        "Marking"
+      ],
+      "dimensions": [
+        1,
+        1,
+        0.10000000149011612
+      ]
+    },
+    "SM_Marksman": {
+      "vertices": 4104,
+      "materials": [
+        "Gunmetal",
+        "Rubber",
+        "WeaponPolymer",
+        "BrushedAlloy",
+        "Graphite",
+        "SmokedGlass"
+      ],
+      "dimensions": [
+        1.102000117301941,
+        0.07599999755620956,
+        0.37800002098083496
+      ]
+    },
+    "SM_Motorcycle": {
+      "vertices": 3438,
+      "materials": [
+        "BrushedAlloy",
+        "Paint_Motorcycle",
+        "Rubber",
+        "Graphite",
+        "Headlamp",
+        "TailLamp"
+      ],
+      "dimensions": [
+        2.0799996852874756,
+        0.8399999737739563,
+        0.8169976472854614
+      ]
+    },
+    "SM_Muscle": {
+      "vertices": 4423,
+      "materials": [
+        "Paint_Muscle",
+        "",
+        "SmokedGlass",
+        "Graphite",
+        "BrushedAlloy",
+        "Rubber",
+        "Headlamp",
+        "TailLamp",
+        "Fabric",
+        "Ivory"
+      ],
+      "dimensions": [
+        5.098999977111816,
+        2.3400001525878906,
+        1.1299999952316284
+      ]
+    },
+    "SM_Office": {
+      "vertices": 92280,
+      "materials": [
+        "Concrete",
+        "SmokedGlass",
+        "Graphite",
+        "BrushedAlloy"
+      ],
+      "dimensions": [
+        28.5,
+        24.5,
+        77
+      ]
+    },
+    "SM_Parachute": {
+      "vertices": 205,
+      "materials": [
+        "Canopy",
+        "Ivory"
+      ],
+      "dimensions": [
+        2,
+        5.119999885559082,
+        2.50816011428833
+      ]
+    },
+    "SM_Pickup": {
+      "vertices": 4446,
+      "materials": [
+        "Paint_Pickup",
+        "",
+        "SmokedGlass",
+        "Graphite",
+        "BrushedAlloy",
+        "Rubber",
+        "Headlamp",
+        "TailLamp",
+        "Fabric",
+        "Ivory"
+      ],
+      "dimensions": [
+        5.529000282287598,
+        2.390000104904175,
+        1.6049998998641968
+      ]
+    },
+    "SM_Pistol": {
+      "vertices": 1128,
+      "materials": [
+        "Gunmetal",
+        "WeaponPolymer",
+        "Rubber",
+        "BrushedAlloy"
+      ],
+      "dimensions": [
+        0.27335450053215027,
+        0.04425528645515442,
+        0.20620617270469666
+      ]
+    },
+    "SM_Police": {
+      "vertices": 4904,
+      "materials": [
+        "Paint_Police",
+        "",
+        "SmokedGlass",
+        "Graphite",
+        "BrushedAlloy",
+        "Rubber",
+        "Headlamp",
+        "TailLamp",
+        "Fabric",
+        "Ivory",
+        "PoliceBlue"
+      ],
+      "dimensions": [
+        4.999000072479248,
+        2.320000171661377,
+        1.459999918937683
+      ]
+    },
+    "SM_PoliceHelicopter": {
+      "vertices": 2816,
+      "materials": [
+        "Paint_PoliceHelicopter",
+        "SmokedGlass",
+        "BrushedAlloy",
+        "Graphite",
+        "Headlamp",
+        "Ivory"
+      ],
+      "dimensions": [
+        10.359999656677246,
+        2.523637533187866,
+        3.315000057220459
+      ]
+    },
+    "SM_PortCrane": {
+      "vertices": 1280,
+      "materials": [
+        "CraneOchre",
+        "Rubber",
+        "SmokedGlass"
+      ],
+      "dimensions": [
+        36.16970443725586,
+        10.69047737121582,
+        24.323518753051758
+      ]
+    },
+    "SM_Propeller": {
+      "vertices": 422,
+      "materials": [
+        "BrushedAlloy",
+        "Graphite"
+      ],
+      "dimensions": [
+        0.4799998104572296,
+        1.7812916040420532,
+        2.056858539581299
+      ]
+    },
+    "SM_Revolver": {
+      "vertices": 1176,
+      "materials": [
+        "Gunmetal",
+        "WeaponPolymer",
+        "Rubber",
+        "BrushedAlloy"
+      ],
+      "dimensions": [
+        0.27335450053215027,
+        0.06800001114606857,
+        0.20620617270469666
+      ]
+    },
+    "SM_Rifle": {
+      "vertices": 3752,
+      "materials": [
+        "Gunmetal",
+        "Rubber",
+        "WeaponPolymer",
+        "BrushedAlloy"
+      ],
+      "dimensions": [
+        1.102000117301941,
+        0.06700000166893005,
+        0.2954999804496765
+      ]
+    },
+    "SM_Rock": {
+      "vertices": 2172,
+      "materials": [
+        "Concrete"
+      ],
+      "dimensions": [
+        2.6632537841796875,
+        2.3102073669433594,
+        1
+      ]
+    },
+    "SM_Rocket": {
+      "vertices": 410,
+      "materials": [
+        "BrushedAlloy",
+        "Graphite"
+      ],
+      "dimensions": [
+        0.5199999809265137,
+        0.09000001847743988,
+        0.09000001847743988
+      ]
+    },
+    "SM_Rotor": {
+      "vertices": 432,
+      "materials": [
+        "BrushedAlloy",
+        "Graphite"
+      ],
+      "dimensions": [
+        8.600000381469727,
+        8.600000381469727,
+        0.23999999463558197
+      ]
+    },
+    "SM_Safehouse": {
+      "vertices": 1632,
+      "materials": [
+        "Wood",
+        "Ivory",
+        "Fabric",
+        "BrushedAlloy",
+        "Graphite"
+      ],
+      "dimensions": [
+        12.199999809265137,
+        10.199999809265137,
+        3.440000295639038
+      ]
+    },
+    "SM_Sand": {
+      "vertices": 8,
+      "materials": [
+        "Sand"
+      ],
+      "dimensions": [
+        1,
+        1,
+        0.10000000149011612
+      ]
+    },
+    "SM_Sedan": {
+      "vertices": 4424,
+      "materials": [
+        "Paint_Sedan",
+        "",
+        "SmokedGlass",
+        "Graphite",
+        "BrushedAlloy",
+        "Rubber",
+        "Headlamp",
+        "TailLamp",
+        "Fabric",
+        "Ivory"
+      ],
+      "dimensions": [
+        4.869000434875488,
+        2.259999990463257,
+        1.2049999237060547
+      ]
+    },
+    "SM_Shop": {
+      "vertices": 4056,
+      "materials": [
+        "Concrete",
+        "SmokedGlass",
+        "Graphite",
+        "BrushedAlloy"
+      ],
+      "dimensions": [
+        22.5,
+        17.5,
+        6.300000190734863
+      ]
+    },
+    "SM_Shotgun": {
+      "vertices": 3696,
+      "materials": [
+        "Gunmetal",
+        "Rubber",
+        "WeaponPolymer",
+        "BrushedAlloy"
+      ],
+      "dimensions": [
+        1.0420000553131104,
+        0.06700000166893005,
+        0.25817739963531494
+      ]
+    },
+    "SM_Sidewalk": {
+      "vertices": 8,
+      "materials": [
+        "Sidewalk"
+      ],
+      "dimensions": [
+        1,
+        1,
+        0.10000000149011612
+      ]
+    },
+    "SM_SMG": {
+      "vertices": 3752,
+      "materials": [
+        "Gunmetal",
+        "Rubber",
+        "WeaponPolymer",
+        "BrushedAlloy"
+      ],
+      "dimensions": [
+        0.8329999446868896,
+        0.06700000166893005,
+        0.2954999804496765
+      ]
+    },
+    "SM_Smoke": {
+      "vertices": 362,
+      "materials": [
+        "Smoke"
+      ],
+      "dimensions": [
+        0.6999997496604919,
+        0.6399997472763062,
+        0.6000000238418579
+      ]
+    },
+    "SM_Sniper": {
+      "vertices": 4104,
+      "materials": [
+        "Gunmetal",
+        "Rubber",
+        "WeaponPolymer",
+        "BrushedAlloy",
+        "Graphite",
+        "SmokedGlass"
+      ],
+      "dimensions": [
+        1.3420000076293945,
+        0.07599999755620956,
+        0.37800002098083496
+      ]
+    },
+    "SM_Spark": {
+      "vertices": 362,
+      "materials": [
+        "Headlamp"
+      ],
+      "dimensions": [
+        0.19999992847442627,
+        0.19999991357326508,
+        0.20000000298023224
+      ]
+    },
+    "SM_Spoiler": {
+      "vertices": 288,
+      "materials": [
+        "Graphite",
+        "BrushedAlloy"
+      ],
+      "dimensions": [
+        0.30000001192092896,
+        1.7999999523162842,
+        0.27000001072883606
+      ]
+    },
+    "SM_Sport": {
+      "vertices": 4727,
+      "materials": [
+        "Paint_Sport",
+        "",
+        "SmokedGlass",
+        "Graphite",
+        "BrushedAlloy",
+        "Rubber",
+        "Headlamp",
+        "TailLamp",
+        "Fabric",
+        "Ivory"
+      ],
+      "dimensions": [
+        4.598999977111816,
+        2.320000171661377,
+        1.1299999952316284
+      ]
+    },
+    "SM_Suppressor": {
+      "vertices": 616,
+      "materials": [
+        "Graphite",
+        "BrushedAlloy",
+        "Rubber"
+      ],
+      "dimensions": [
+        0.24300000071525574,
+        0.046000003814697266,
+        0.046000003814697266
+      ]
+    },
+    "SM_SUV": {
+      "vertices": 4428,
+      "materials": [
+        "Paint_SUV",
+        "",
+        "SmokedGlass",
+        "Graphite",
+        "BrushedAlloy",
+        "Rubber",
+        "Headlamp",
+        "TailLamp",
+        "Fabric",
+        "Ivory"
+      ],
+      "dimensions": [
+        5.109000205993652,
+        2.4000000953674316,
+        1.6449999809265137
+      ]
+    },
+    "SM_Tower": {
+      "vertices": 191160,
+      "materials": [
+        "Concrete",
+        "SmokedGlass",
+        "Graphite",
+        "BrushedAlloy"
+      ],
+      "dimensions": [
+        33.5,
+        28.5,
+        133
+      ]
+    },
+    "SM_TrafficLight": {
+      "vertices": 304,
+      "materials": [
+        "Graphite",
+        "TailLamp",
+        "Amber",
+        "Green"
+      ],
+      "dimensions": [
+        0.3700000047683716,
+        5.289999961853027,
+        5.675000190734863
+      ]
+    },
+    "SM_Tree0": {
+      "vertices": 22648,
+      "materials": [
+        "Wood",
+        "Foliage"
+      ],
+      "dimensions": [
+        6.387098789215088,
+        6.534657001495361,
+        6.8129072189331055
+      ]
+    },
+    "SM_Tree1": {
+      "vertices": 22648,
+      "materials": [
+        "Wood",
+        "Foliage"
+      ],
+      "dimensions": [
+        6.608260154724121,
+        6.970244407653809,
+        7.528419494628906
+      ]
+    },
+    "SM_Tree2": {
+      "vertices": 22648,
+      "materials": [
+        "Wood",
+        "Foliage"
+      ],
+      "dimensions": [
+        6.53492546081543,
+        6.401281356811523,
+        7.506604194641113
+      ]
+    },
+    "SM_Van": {
+      "vertices": 4430,
+      "materials": [
+        "Paint_Van",
+        "",
+        "SmokedGlass",
+        "Graphite",
+        "BrushedAlloy",
+        "Rubber",
+        "Headlamp",
+        "TailLamp",
+        "Fabric",
+        "Ivory"
+      ],
+      "dimensions": [
+        5.269000053405762,
+        2.330000162124634,
+        1.8750001192092896
+      ]
+    },
+    "SM_Warehouse": {
+      "vertices": 10776,
+      "materials": [
+        "Concrete",
+        "SmokedGlass",
+        "Graphite",
+        "BrushedAlloy"
+      ],
+      "dimensions": [
+        38.5,
+        30.5,
+        12
+      ]
+    },
+    "SM_Water": {
+      "vertices": 8,
+      "materials": [
+        "Water"
+      ],
+      "dimensions": [
+        1,
+        1,
+        0.10000000149011612
+      ]
+    },
+    "SM_Wheel": {
+      "vertices": 1632,
+      "materials": [
+        "Rubber",
+        "BrushedAlloy",
+        "Graphite"
+      ],
+      "dimensions": [
+        0.689309298992157,
+        0.32999998331069946,
+        0.6893093585968018
+      ]
+    }
+  }
+}
